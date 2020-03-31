@@ -8,7 +8,7 @@ public class Main {
         try{
             Statement s = null;
             Class.forName(JDBC_DRIVER);
-            con = DriverManager.getConnection(DATABASE_URL, "kcr","sesame");
+            con = DriverManager.getConnection(DATABASE_URL, "root","sesame");
             s = con.createStatement();
             ResultSet rs = s.executeQuery("SELECT model FROM cars");
 
