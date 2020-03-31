@@ -1,8 +1,8 @@
 package com.KCR;
 import java.sql.*;
 public class Main {
-    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DATABASE_URL = "jdbc:mysql://localhost/kcr";
+    static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
+    static final String DATABASE_URL = "jdbc:mysql://localhost/kcr?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     static Connection con;
     public static void main(String[] args)throws SQLException {
         try{
