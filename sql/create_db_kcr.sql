@@ -44,7 +44,7 @@ CREATE TABLE cars
     model				VARCHAR(20)							NOT NULL,
     car_type			ENUM('luxury', 'family', 'sport')	NOT NULL, 
     gear_type			ENUM('manual', 'automatic')			NOT NULL, 
-    air_condition		TINYINT								NOT NULL, 
+    air_conditioning	TINYINT								NOT NULL, 
     ccm					INT, 	-- Tesla cars do not contain an internal combustion engine (ICE)
     hp					INT									NOT NULL, 
     seat_type			VARCHAR(20)							NOT NULL, 
