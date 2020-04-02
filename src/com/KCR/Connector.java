@@ -59,4 +59,26 @@ public class Connector {
             return null;
         }
     }
+
+    public int executeUpdate(String query) throws SQLException {
+        int result = -1;
+        try {
+            Statement s = null;
+            s = con.createStatement();
+            result = s.executeUpdate(query);
+
+            if (result != 0){
+                return result;
+            }
+
+            s.close();
+            con.close();
+            return result;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            con.close();
+            return result;
+        }
+    }
 }

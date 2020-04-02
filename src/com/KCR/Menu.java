@@ -11,7 +11,7 @@ public class Menu {
         int option = -1;
         while(option != 0){
             printOptions();
-            option = GetInput.getOptionFromUser(0, 1);
+            option = GetInput.getOptionFromUser(0, 10);
             executeOption(option);
         }
         System.out.printf("All data has been saved. Exiting program...");
@@ -20,17 +20,27 @@ public class Menu {
     public static void printOptions(){
         System.out.printf("%d - Show all cars%n", 1);
         System.out.printf("%d - Show car with ID%n", 2);
+        System.out.printf("%d - Update car info%n", 3);
         System.out.printf("%d - Save and exit%n", 0);
 
         System.out.printf("%nSelect: ");
     }
 
     public static void executeOption(int option) throws SQLException {
+        int id;
         switch (option){
             case 1: // Show list of cars
                 CarController.showAllCars();
                 break;
             case 2: // Show car with ID
+                System.out.printf("Please select ID%n");
+                id = GetInput.getIntFromUser();
+                CarController.showCar(id);
+                break;
+            case 3: // Update car info
+                System.out.printf("Please select ID%n");
+                id = GetInput.getIntFromUser();
+                CarController.updateCar(id);
                 break;
 
 
