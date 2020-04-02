@@ -19,6 +19,7 @@ public class Menu {
 
     public static void printOptions(){
         System.out.printf("%d - Show all cars%n", 1);
+        System.out.printf("%d - Show car with ID%n", 2);
         System.out.printf("%d - Save and exit%n", 0);
 
         System.out.printf("%nSelect: ");
@@ -27,11 +28,12 @@ public class Menu {
     public static void executeOption(int option) throws SQLException {
         switch (option){
             case 1: // Show list of cars
-                Connector con = Connector.getInstance();
-                ResultSet rs = con.executeQuery("SELECT * FROM cars");
-                while(rs.next()){
-                    System.out.println("Data for name: " + rs.getString("model"));
-                }
+                CarController.showAllCars();
+                break;
+            case 2: // Show car with ID
+                break;
+
+
         }
     }
 
