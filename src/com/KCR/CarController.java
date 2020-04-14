@@ -21,23 +21,23 @@ public class CarController {
         Connector con = Connector.getInstance();
         ResultSet rs = con.executeQuery("SELECT * FROM cars");
         while(rs.next()){
-            System.out.println("Car:");
-            System.out.printf("%-15s %d%n", "ID:", rs.getInt("id"));
-            System.out.printf("%-15s %s%n", "Reg. Number:", rs.getString("registration_number"));
-            System.out.printf("%-15s %s%n", "Model:", rs.getString("model"));
-            System.out.printf("%-15s %s%n", "Car type:", rs.getString("car_type"));
+            System.out.printf("ID: %d, ", rs.getInt("id"));
+            System.out.printf("Reg. Num: %s, ", rs.getString("registration_number"));
+            System.out.printf("Model: %s, ", rs.getString("model"));
+            System.out.printf("Type: %s", rs.getString("car_type"));
             System.out.printf("%n");
         }
+        System.out.printf("%n");
     }
 
     public static void showCar(int id) throws SQLException {
         Connector con = Connector.getInstance();
         ResultSet rs = con.executeQuery("SELECT * FROM cars WHERE id = " + id);
-        if(rs.next() == false){
+        while(rs.next() == false){
             System.out.printf("No cars found with the given ID. Please select an ID from the following list:%n");
             showAllCars();
-            Menu.executeOption(2); // Returning user to menu
-            return;
+            id = GetInput.getIntFromUser("ID");
+            rs = con.executeQuery("SELECT * FROM cars WHERE id = " + id);
         }
 
         System.out.println("Car:");
@@ -60,8 +60,6 @@ public class CarController {
 
     public static void createCar() throws SQLException{
         Connector con = Connector.getInstance();
-        ResultSet rs = con.executeQuery("SELECT * FROM cars WHERE id");
-        Scanner input = new Scanner(System.in);
 
         System.out.printf("Which type of car would you like to register?%n");
         System.out.printf("%d - Luxury%n", 1);
@@ -69,22 +67,19 @@ public class CarController {
         System.out.printf("%d - Family%n", 3);
 
         int option = GetInput.getOptionFromUser(1, 3);
-
-        String query;
-
         insertCar(option);
-        // Luxury
-            // >3000ccm, auto-gear, ac, cc, leather
-        // Sport
-            // manual, >200 hp
-        // Family
-            // manual, >=7, ac, cc yes/no
     }
 
-    public static void insertCar(int option) {
-        Scanner input = new Scanner(System.in);
-
+    public static void insertCar(int option) throws SQLException {
+        Connector con = Connector.getInstance();
         String regNumber = GetInput.getStringOfLength(10, "Registration number");
+        String checkRegNumber = String.format("SELECT * FROM cars WHERE registration_number = '%s'", regNumber);
+        ResultSet rs = con.executeQuery(checkRegNumber);
+        while(rs.next()) {
+            System.out.printf("A car with this registration number has already been registered. Please try again!");
+            regNumber = GetInput.getStringOfLength(10, "Registration number");
+            rs = con.executeQuery(checkRegNumber);
+        }
 
         LocalDate firstRegistration = DateHelper.getValidDateFromUser("First registration (yyyy-MM-dd)");
 
@@ -94,18 +89,16 @@ public class CarController {
         System.out.printf("%n%d - Electric", 3);
 
         int fuelOption = GetInput.getOptionFromUser(1, 3);
-        String fuelType;
+        String fuelType = "";
         switch(fuelOption) {
             case 1:
-                fuelType = "Gasoline";
+                fuelType = "gasoline";
                 break;
             case 2:
-                fuelType = "Diesel";
+                fuelType = "diesel";
                 break;
             case 3:
-                fuelType = "Electric";
-                break;
-            default:
+                fuelType = "electric";
                 break;
         }
 
@@ -131,7 +124,7 @@ public class CarController {
             }
         }
 
-        String seatType;
+        String seatType = "";
         if(option == 2 || option == 3) {
             seatType = GetInput.getStringOfLength(20, "Seat type");
         }
@@ -144,14 +137,15 @@ public class CarController {
             }
         }
 
-        boolean cruiseControl;
+        boolean cruiseControl = false;
         if(option == 2 || option == 3) {
             System.out.printf("%nCruise control (1 for yes / 2 for no)");
             cruiseControl = 1 == GetInput.getOptionFromUser(1, 2);
         }
 
-        String gearType;
-        boolean airCon;
+        String gearType = "";
+        boolean airCon = false;
+        String ct = "";
 
         switch(option){
             case 1: // Luxury
@@ -159,14 +153,37 @@ public class CarController {
                 airCon = true;
                 seatType = "leather";
                 cruiseControl = true;
+                ct = "luxury";
+                break;
             case 2: // Sport
                 gearType = "manual";
                 System.out.printf("%nAir conditioning (1 for yes / 2 for no)");
                 airCon = 1 == GetInput.getOptionFromUser(1, 2);
+                ct = "sport";
+                break;
             case 3: // Family
                 gearType = "manual";
                 airCon = true;
+                ct = "family";
+                break;
         }
+
+        String checkBrand = String.format("SELECT * FROM brands WHERE brand_name = '%s'", brand);
+        String queryBrand = String.format("INSERT INTO brands VALUES (0, '%s')", brand);
+        // Inserting brand if not present in database
+        int brandID = con.insertIfNotExists(checkBrand, queryBrand);
+
+        String checkModel = String.format("SELECT * FROM models WHERE model = '%s'", model);
+        String queryModel = String.format("INSERT INTO models VALUES ('%s', '%d')", model, brandID);
+        // Inserting model if not present in database
+        rs = con.executeQuery(checkModel);
+        if(!rs.next()) {
+            con.executeUpdate(queryModel);
+        }
+
+        String queryCar = String.format("INSERT INTO cars VALUES (0, '%s', '%s', '%s', '%d', '%s', '%s', '%s', %b, '%d', '%d', '%s', '%d', %b)",
+                regNumber, firstRegistration, fuelType, odometer, model, ct, gearType, airCon, ccm, hp, seatType, seatNumber, cruiseControl);
+        con.executeUpdate(queryCar);
     }
 
     public static void updateCar(int id) throws SQLException {
@@ -207,4 +224,18 @@ public class CarController {
         }
 
     }
+
+    public static void deleteCar(int id) throws SQLException {
+        Connector con = Connector.getInstance();
+        ResultSet rs = con.executeQuery("SELECT * FROM cars WHERE id = " + id);
+        if(rs.next() == false){
+            System.out.printf("No cars found with the given ID. Please select an ID from the following list:%n");
+            showAllCars();
+            Menu.executeOption(2); // Returning user to menu
+            return;
+        }
+        String deleteQuery = String.format("DELETE FROM cars WHERE id = %d", id);
+        con.executeUpdate(deleteQuery);
+    }
 }
+

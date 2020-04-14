@@ -65,7 +65,7 @@ public class Connector {
         try {
             Statement s = null;
             s = con.createStatement();
-            result = s.executeUpdate(query);
+            result = s.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
 
             if (result != 0){
                 return result;
@@ -79,6 +79,16 @@ public class Connector {
             e.printStackTrace();
             con.close();
             return result;
+        }
+    }
+
+    public int insertIfNotExists(String checkQuery, String insertQuery) throws SQLException{
+        Connector con = Connector.getInstance();
+        ResultSet rs = con.executeQuery(checkQuery);
+        if(!rs.next()) {
+            return con.executeUpdate(insertQuery);
+        } else {
+            return rs.getInt("id");
         }
     }
 }
