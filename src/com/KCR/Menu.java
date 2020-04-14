@@ -21,9 +21,10 @@ public class Menu {
         System.out.printf("%d - Show all cars%n", 1);
         System.out.printf("%d - Show car with ID%n", 2);
         System.out.printf("%d - Update car info%n", 3);
+        System.out.printf("%d - Register new car%n", 4);
         System.out.printf("%d - Save and exit%n", 0);
 
-        System.out.printf("%nSelect: ");
+
     }
 
     public static void executeOption(int option) throws SQLException {
@@ -34,16 +35,17 @@ public class Menu {
                 break;
             case 2: // Show car with ID
                 System.out.printf("Please select ID%n");
-                id = GetInput.getIntFromUser();
+                id = GetInput.getIntFromUser("ID");
                 CarController.showCar(id);
                 break;
             case 3: // Update car info
                 System.out.printf("Please select ID%n");
-                id = GetInput.getIntFromUser();
+                id = GetInput.getIntFromUser("ID");
                 CarController.updateCar(id);
                 break;
-
-
+            case 4: // Register new car
+                CarController.createCar();
+                break;
         }
     }
 

@@ -12,6 +12,7 @@ public class GetInput {
         int retNumber;
         boolean isNotValid = false;
 
+        System.out.printf("%nSelect: ");
         do {
             if (isNotValid) {
                 System.out.printf("The number must be between %d and %d%n", minInt, maxInt);
@@ -22,7 +23,6 @@ public class GetInput {
                 System.out.printf("Select: ");
                 scan.next();
             }
-            // hasNextInt() true, reading number from console
             retNumber = scan.nextInt();
             isNotValid = retNumber < minInt || retNumber > maxInt;
         } while (isNotValid);
@@ -36,18 +36,18 @@ public class GetInput {
 
         while (!scan.hasNextInt()) {
             System.out.printf("The entered phone number %s is not a number! Please try again%n", scan.nextLine());
-            continue;
         }
         return scan.nextInt();
     }
 
     // Gets an int from user
-    public static int getIntFromUser() {
+    public static int getIntFromUser(String title) {
         Scanner scanInput = new Scanner(System.in);
+        System.out.printf("%n%s: ", title);
 
         while (!scanInput.hasNextInt()) {
             System.out.printf("The input '%s' is not a number. Please try again.%n", scanInput.nextLine());
-            continue;
+            System.out.printf("%s: ", title);
         }
         return scanInput.nextInt();
     }
@@ -58,7 +58,7 @@ public class GetInput {
 
         while (!scanInput.hasNextDouble()) {
             System.out.printf("The input '%s' is not a number. Please try again.%n", scanInput.nextLine());
-            continue;
+            System.out.printf("Select: ");
         }
         return scanInput.nextDouble();
     }
@@ -71,6 +71,20 @@ public class GetInput {
         String name = scanInput.next();
         while (name.matches(".*\\d.*")) {
             System.out.printf(title + " cannot contain a number! Please try again%n");
+            name = scanInput.next();
+        }
+        return name;
+    }
+
+    // Gets a string from user below or at a certain length
+    public static String getStringOfLength(int length, String title) {
+        Scanner scanInput = new Scanner(System.in);
+        System.out.printf("%n%s: ", title);
+
+        String name = scanInput.next();
+        while (name.length() > length) {
+            System.out.printf("%s cannot contain more than %d characters! Please try again%n", title, length);
+            System.out.printf("%s: ", title);
             name = scanInput.next();
         }
         return name;

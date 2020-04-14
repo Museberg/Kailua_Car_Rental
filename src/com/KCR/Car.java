@@ -30,13 +30,13 @@ public class Car {
 
     public Car(int id, String registrationNumber, Date firstRegistration, String fuelType, int odometer, String model, CarType carType,
                GearType gearType, boolean airConditioning, int ccm, int hp, String seatType, int seatNumber, boolean cruiseControl) {
+        this.carType = carType;
         this.id = id;
         this.registrationNumber = registrationNumber;
         this.firstRegistration = firstRegistration;
         this.fuelType = fuelType;
         this.odometer = odometer;
         this.model = model;
-        this.carType = carType;
         this.gearType = gearType;
         this.airConditioning = airConditioning;
         this.ccm = ccm;
