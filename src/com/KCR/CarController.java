@@ -3,7 +3,6 @@ package com.KCR;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.Scanner;
 
 public class CarController {
 
@@ -33,12 +32,7 @@ public class CarController {
     public static void showCar(int id) throws SQLException {
         Connector con = Connector.getInstance();
         ResultSet rs = con.executeQuery("SELECT * FROM cars WHERE id = " + id);
-        while(rs.next() == false){
-            System.out.printf("No cars found with the given ID. Please select an ID from the following list:%n");
-            showAllCars();
-            id = GetInput.getIntFromUser("ID");
-            rs = con.executeQuery("SELECT * FROM cars WHERE id = " + id);
-        }
+        id = getValidId(id, con, rs);
 
         System.out.println("Car:");
         System.out.printf("%-15s %d%n", "ID:", rs.getInt("id"));
@@ -189,12 +183,7 @@ public class CarController {
     public static void updateCar(int id) throws SQLException {
         Connector con = Connector.getInstance();
         ResultSet rs = con.executeQuery("SELECT * FROM cars WHERE id = " + id);
-        while(rs.next() == false){
-            System.out.printf("No cars found with the given ID. Please select an ID from the following list:%n");
-            showAllCars();
-            id = GetInput.getIntFromUser("ID");
-            rs = con.executeQuery("SELECT * FROM cars WHERE id = " + id);
-        }
+        id = getValidId(id, con, rs);
 
         System.out.printf("What do you wan to update?%n");
         System.out.printf("%d - Registration number%n", 1);
@@ -227,14 +216,19 @@ public class CarController {
     public static void deleteCar(int id) throws SQLException {
         Connector con = Connector.getInstance();
         ResultSet rs = con.executeQuery("SELECT * FROM cars WHERE id = " + id);
+        id = getValidId(id, con, rs);
+        String deleteQuery = String.format("DELETE FROM cars WHERE id = %d", id);
+        con.executeUpdate(deleteQuery);
+    }
+
+    private static int getValidId(int id, Connector con, ResultSet rs) throws SQLException {
         while(rs.next() == false){
             System.out.printf("No cars found with the given ID. Please select an ID from the following list:%n");
             showAllCars();
             id = GetInput.getIntFromUser("ID");
             rs = con.executeQuery("SELECT * FROM cars WHERE id = " + id);
         }
-        String deleteQuery = String.format("DELETE FROM cars WHERE id = %d", id);
-        con.executeUpdate(deleteQuery);
+        return id;
     }
 }
 
