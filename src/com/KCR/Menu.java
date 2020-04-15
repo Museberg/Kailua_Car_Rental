@@ -33,7 +33,7 @@ public class Menu {
                 renterMenu();
                 break;
             case 3: // Update car info
-                //contractsMenu();
+                contractsMenu();
                 break;
             case 0: // Save and exit
                 break;
@@ -81,6 +81,7 @@ public class Menu {
         }
     }
 
+
     public static void renterMenu() throws SQLException {
         int option = -1;
 
@@ -105,24 +106,53 @@ public class Menu {
                     RenterController.showRenter(id);
                     break;
                 case 3: // Update renter info
-                    RenterController.showAllRenters();
-                    System.out.printf("Please select an ID from the list above%n");
-                    id = GetInput.getIntFromUser("ID");
-                    RenterController.updateRenter(id);
+                    System.out.println("Not implemented yet.");
                     break;
                 case 4: // Register new renter
                     RenterController.createRenter();
                     break;
                 case 5: // Delete renter
-                    RenterController.showAllRenters();
-                    System.out.printf("Please select an ID from the list above%n");
-                    id = GetInput.getIntFromUser("ID");
-                    RenterController.deleteRenter(id);
+                    System.out.println("Not implemented yeet.");
                     break;
 
             }
 
         }
 
+    }
+
+    public static void contractsMenu() throws SQLException {
+        int option = -1;
+        while(option != 0) {
+            System.out.printf("%d - Show all contracts%n", 1);
+            System.out.printf("%d - Show contract with ID%n", 2);
+            System.out.printf("%d - Update contract info%n", 3);
+            System.out.printf("%d - Register new contract%n", 4);
+            System.out.printf("%d - Delete contract%n", 5);
+            System.out.printf("%d - Back to main menu%n", 0);
+
+            option = GetInput.getOptionFromUser(0, 5);
+            int id;
+            switch (option) {
+                case 1: // Show list of contracts
+                    ContractController.showAllContracts();
+                    break;
+                case 2: // Show renter with ID
+                    RenterController.showAllRenters();
+                    System.out.printf("Please select an ID from the list above%n");
+                    id = GetInput.getIntFromUser("ID");
+                    RenterController.showRenter(id);
+                    break;
+                case 3: // Update renter info
+                    System.out.println("Not implemented yet.");
+                    break;
+                case 4: // Register new renter
+                    RenterController.createRenter();
+                    break;
+                case 5: // Delete renter
+                    System.out.println("Not implemented yeet.");
+                    break;
+            }
+        }
     }
 }
