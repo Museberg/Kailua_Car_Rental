@@ -31,8 +31,9 @@ public class CarController {
 
     public static void showCar(int id) throws SQLException {
         Connector con = Connector.getInstance();
+        id = getValidId(id, con);
         ResultSet rs = con.executeQuery("SELECT * FROM cars WHERE id = " + id);
-        id = getValidId(id, con, rs);
+        rs.next();
 
         System.out.println("Car:");
         System.out.printf("%-15s %d%n", "ID:", rs.getInt("id"));
@@ -165,7 +166,7 @@ public class CarController {
         String checkBrand = String.format("SELECT * FROM brands WHERE brand_name = '%s'", brand);
         String queryBrand = String.format("INSERT INTO brands VALUES (0, '%s')", brand);
         // Inserting brand if not present in database
-        int brandID = con.insertIfNotExists(checkBrand, queryBrand);
+        int brandID = con.insertIfNotExistsInt(checkBrand, queryBrand);
 
         String checkModel = String.format("SELECT * FROM models WHERE model = '%s'", model);
         String queryModel = String.format("INSERT INTO models VALUES ('%s', '%d')", model, brandID);
@@ -182,8 +183,9 @@ public class CarController {
 
     public static void updateCar(int id) throws SQLException {
         Connector con = Connector.getInstance();
+        id = getValidId(id, con);
         ResultSet rs = con.executeQuery("SELECT * FROM cars WHERE id = " + id);
-        id = getValidId(id, con, rs);
+        rs.next();
 
         System.out.printf("What do you wan to update?%n");
         System.out.printf("%d - Registration number%n", 1);
@@ -215,13 +217,16 @@ public class CarController {
 
     public static void deleteCar(int id) throws SQLException {
         Connector con = Connector.getInstance();
+        id = getValidId(id, con);
         ResultSet rs = con.executeQuery("SELECT * FROM cars WHERE id = " + id);
-        id = getValidId(id, con, rs);
+        rs.next();
+
         String deleteQuery = String.format("DELETE FROM cars WHERE id = %d", id);
         con.executeUpdate(deleteQuery);
     }
 
-    private static int getValidId(int id, Connector con, ResultSet rs) throws SQLException {
+    private static int getValidId(int id, Connector con) throws SQLException {
+        ResultSet rs = con.executeQuery("SELECT * FROM cars WHERE id = " + id);
         while(rs.next() == false){
             System.out.printf("No cars found with the given ID. Please select an ID from the following list:%n");
             showAllCars();

@@ -1,13 +1,12 @@
 package com.KCR;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Menu {
 
     public static void showMenu() throws SQLException {
         System.out.println("Welcome to Kailua Car Rental!");
-        System.out.println("Please select an option from the menu%n");
+        System.out.println("Please select an option from the menu");
         int option = -1;
         while(option != 0){
             printOptions();
@@ -31,7 +30,7 @@ public class Menu {
                 carMenu();
                 break;
             case 2: // Show car with ID
-                //rentersMenu();
+                renterMenu();
                 break;
             case 3: // Update car info
                 //contractsMenu();
@@ -80,5 +79,50 @@ public class Menu {
                     break;
             }
         }
+    }
+
+    public static void renterMenu() throws SQLException {
+        int option = -1;
+
+        while(option != 0) {
+            System.out.printf("%d - Show all renters%n", 1);
+            System.out.printf("%d - Show renter with ID%n", 2);
+            System.out.printf("%d - Update renter info%n", 3);
+            System.out.printf("%d - Register new renter%n", 4);
+            System.out.printf("%d - Delete renter%n", 5);
+            System.out.printf("%d - Back to main menu%n", 0);
+
+            option = GetInput.getOptionFromUser(0, 5);
+            int id;
+            switch (option) {
+                case 1: // Show list of renters
+                    RenterController.showAllRenters();
+                    break;
+                case 2: // Show renter with ID
+                    RenterController.showAllRenters();
+                    System.out.printf("Please select an ID from the list above%n");
+                    id = GetInput.getIntFromUser("ID");
+                    RenterController.showRenter(id);
+                    break;
+                case 3: // Update renter info
+                    RenterController.showAllRenters();
+                    System.out.printf("Please select an ID from the list above%n");
+                    id = GetInput.getIntFromUser("ID");
+                    RenterController.updateRenter(id);
+                    break;
+                case 4: // Register new renter
+                    RenterController.createRenter();
+                    break;
+                case 5: // Delete renter
+                    RenterController.showAllRenters();
+                    System.out.printf("Please select an ID from the list above%n");
+                    id = GetInput.getIntFromUser("ID");
+                    RenterController.deleteRenter(id);
+                    break;
+
+            }
+
+        }
+
     }
 }

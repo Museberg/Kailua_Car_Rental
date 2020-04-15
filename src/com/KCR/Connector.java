@@ -82,7 +82,7 @@ public class Connector {
         }
     }
 
-    public int insertIfNotExists(String checkQuery, String insertQuery) throws SQLException{
+    public int insertIfNotExistsInt(String checkQuery, String insertQuery) throws SQLException{
         Connector con = Connector.getInstance();
         ResultSet rs = con.executeQuery(checkQuery);
         if(!rs.next()) {
@@ -91,4 +91,16 @@ public class Connector {
             return rs.getInt("id");
         }
     }
+
+    public String insertIfNotExistsString(String checkQuery, String insertQuery, String columnName) throws SQLException{
+        Connector con = Connector.getInstance();
+        ResultSet rs = con.executeQuery(checkQuery);
+        if(!rs.next()) {
+            con.executeUpdate(insertQuery);
+            return null;
+        } else {
+            return rs.getString(columnName);
+        }
+    }
+
 }
