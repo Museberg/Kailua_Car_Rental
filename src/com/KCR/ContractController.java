@@ -2,6 +2,7 @@ package com.KCR;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 
 public class ContractController {
     public static void showAllContracts() throws SQLException {
@@ -23,7 +24,9 @@ public class ContractController {
             System.out.printf("ID: %d, ", rs.getInt("id"));
             System.out.printf("Renter: %s %s, ", rsRenters.getString("first_name"), rsRenters.getString("last_name"));
             System.out.printf("Car: %s %s, ", rsCars.getString("model"), rsCars.getString("registration_number"));
-            System.out.printf("Timespan: %s - %s, ", DateHelper.dateToString(rs.getDate("start_date")), DateHelper.dateToString(rs.getDate("end_date")));
+            Date startDate = rs.getTimestamp("start_date");
+            Date endDate = rs.getTimestamp("end_date");
+            System.out.printf("Timespan: %s - %s, ", DateHelper.dateToString(rs.getTimestamp("start_date")), DateHelper.dateToString(rs.getTimestamp("end_date")));
 
             System.out.printf("%n");
         }

@@ -5,7 +5,9 @@ import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.*;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Scanner;
+import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
 public class DateHelper {
@@ -53,7 +55,9 @@ public class DateHelper {
     public static String dateToString(LocalDate date) {
         return date.format(localDateformatter);
     }
-    public static String dateToString(Date date) {return dateformatter.format(date); }
+    public static String dateToString(Date date) {
+        date = new Date(date.getTime() - 3600 * 1000);
+        return dateformatter.format(date); }
 
     // Asks the user to input a date. Only returns once date in correct format is given
     public static LocalDate getValidLocalDateFromUser(String title) {
