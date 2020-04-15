@@ -46,6 +46,22 @@ public class Car {
         this.cruiseControl = cruiseControl;
     }
 
+    public CarType getCarType() {
+        return carType;
+    }
+
+    public void setCarType() {
+        this.carType = carType;
+    }
+
+    public void setCarType(GearType gearType) {
+        this.gearType = gearType;
+    }
+
+    public GearType getGearType() {
+        return gearType;
+    }
+
     public int getId() {
         return id;
     }

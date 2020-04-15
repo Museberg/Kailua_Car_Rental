@@ -69,7 +69,7 @@ public class RenterController {
         String telephone = GetInput.getStringOfLength(15, "Telephone num");
         String email = GetInput.getStringOfLength(45, "E-mail");
         String driversLicense = GetInput.getStringOfLength(20, "Drivers license");
-        LocalDate driverSince = DateHelper.getValidDateFromUser("Driver since (yyyy-MM-dd)");
+        LocalDate driverSince = DateHelper.getValidLocalDateFromUser("Driver since (yyyy-MM-dd)");
 
         // Address information
         String streetName = GetInput.getStringOfLength(45, "Street name");

@@ -76,7 +76,7 @@ public class CarController {
             rs = con.executeQuery(checkRegNumber);
         }
 
-        LocalDate firstRegistration = DateHelper.getValidDateFromUser("First registration (yyyy-MM-dd)");
+        LocalDate firstRegistration = DateHelper.getValidLocalDateFromUser("First registration (yyyy-MM-dd)");
 
         System.out.printf("%nFuel type");
         System.out.printf("%n%d - Gasoline", 1);

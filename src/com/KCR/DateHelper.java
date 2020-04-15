@@ -33,7 +33,7 @@ public class DateHelper {
     }
 
     // Asks the user to input a date. Only returns once date in correct format is given
-    public static LocalDate getValidDateFromUser(String title) {
+    public static LocalDate getValidLocalDateFromUser(String title) {
         Scanner scan = new Scanner(System.in);
         System.out.printf("%n%s: ", title);
 
