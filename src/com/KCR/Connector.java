@@ -49,10 +49,6 @@ public class Connector {
             con.close();
             return null; // rs was null
 
-            // Usage
-            /*while(rs.next()){
-                System.out.println("Data for name: " + rs.getString("model"));
-            }*/
         } catch (SQLException e) {
             e.printStackTrace();
             con.close();

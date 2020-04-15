@@ -6,16 +6,6 @@ import java.time.LocalDate;
 
 public class CarController {
 
-    /*public static ResultSet getAllCars() throws SQLException{
-        Connector con = Connector.getInstance();
-        return con.executeQuery("SELECT * FROM cars");
-    }
-
-    public static ResultSet getCar(int id) throws SQLException{
-        Connector con = Connector.getInstance();
-        return con.executeQuery("SELECT * FROM cars WHERE id = " + id);
-    }*/
-
     public static void showAllCars() throws SQLException {
         Connector con = Connector.getInstance();
         ResultSet rs = con.executeQuery("SELECT * FROM cars");
@@ -187,7 +177,7 @@ public class CarController {
         ResultSet rs = con.executeQuery("SELECT * FROM cars WHERE id = " + id);
         rs.next();
 
-        System.out.printf("What do you wan to update?%n");
+        System.out.printf("What do you want to update?%n");
         System.out.printf("%d - Registration number%n", 1);
         System.out.printf("%d - Odometer%n", 2);
 
