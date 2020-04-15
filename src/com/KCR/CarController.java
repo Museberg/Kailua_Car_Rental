@@ -189,11 +189,11 @@ public class CarController {
     public static void updateCar(int id) throws SQLException {
         Connector con = Connector.getInstance();
         ResultSet rs = con.executeQuery("SELECT * FROM cars WHERE id = " + id);
-        if(rs.next() == false){
+        while(rs.next() == false){
             System.out.printf("No cars found with the given ID. Please select an ID from the following list:%n");
             showAllCars();
-            Menu.executeOption(2); // Returning user to menu
-            return;
+            id = GetInput.getIntFromUser("ID");
+            rs = con.executeQuery("SELECT * FROM cars WHERE id = " + id);
         }
 
         System.out.printf("What do you wan to update?%n");
@@ -205,9 +205,8 @@ public class CarController {
         String query;
         switch(option){
             case 1: // Update registration number
-                Scanner scan = new Scanner(System.in);
                 System.out.printf("What do you want to update the reg number to?%n");
-                String newRegNumber = scan.next();
+                String newRegNumber = GetInput.getStringOfLength(10, "Registration number");
                 query = "UPDATE cars " +
                         "SET registration_number = '" + newRegNumber +
                         "' WHERE id = " + id;
@@ -228,11 +227,11 @@ public class CarController {
     public static void deleteCar(int id) throws SQLException {
         Connector con = Connector.getInstance();
         ResultSet rs = con.executeQuery("SELECT * FROM cars WHERE id = " + id);
-        if(rs.next() == false){
+        while(rs.next() == false){
             System.out.printf("No cars found with the given ID. Please select an ID from the following list:%n");
             showAllCars();
-            Menu.executeOption(2); // Returning user to menu
-            return;
+            id = GetInput.getIntFromUser("ID");
+            rs = con.executeQuery("SELECT * FROM cars WHERE id = " + id);
         }
         String deleteQuery = String.format("DELETE FROM cars WHERE id = %d", id);
         con.executeUpdate(deleteQuery);

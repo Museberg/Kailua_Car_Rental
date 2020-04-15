@@ -11,7 +11,7 @@ public class Menu {
         int option = -1;
         while(option != 0){
             printOptions();
-            option = GetInput.getOptionFromUser(0, 10);
+            option = GetInput.getOptionFromUser(0, 3);
             executeOption(option);
         }
         System.out.printf("All data has been saved. Exiting program...");
