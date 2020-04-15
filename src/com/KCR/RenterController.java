@@ -106,7 +106,7 @@ public class RenterController {
         con.executeUpdate(renterQuery);
     }
 
-    private static int getValidId(int id, Connector con) throws SQLException {
+    public static int getValidId(int id, Connector con) throws SQLException {
         ResultSet rs = con.executeQuery("SELECT * FROM renters WHERE id = " + id);
         while(rs.next() == false){
             System.out.printf("No renters found with the given ID. Please select an ID from the following list:%n");

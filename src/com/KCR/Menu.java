@@ -1,10 +1,11 @@
 package com.KCR;
 
 import java.sql.SQLException;
+import java.text.ParseException;
 
 public class Menu {
 
-    public static void showMenu() throws SQLException {
+    public static void showMenu() throws SQLException, ParseException {
         System.out.println("Welcome to Kailua Car Rental!");
         System.out.println("Please select an option from the menu");
         int option = -1;
@@ -23,7 +24,7 @@ public class Menu {
         System.out.printf("%d - Save and exit%n", 0);
     }
 
-    public static void executeOption(int option) throws SQLException {
+    public static void executeOption(int option) throws SQLException, ParseException {
         int id;
         switch (option) {
             case 1: // Show list of cars
@@ -121,7 +122,7 @@ public class Menu {
 
     }
 
-    public static void contractsMenu() throws SQLException {
+    public static void contractsMenu() throws SQLException, ParseException {
         int option = -1;
         while(option != 0) {
             System.out.printf("%d - Show all contracts%n", 1);
@@ -137,20 +138,20 @@ public class Menu {
                 case 1: // Show list of contracts
                     ContractController.showAllContracts();
                     break;
-                case 2: // Show renter with ID
-                    RenterController.showAllRenters();
+                case 2: // Show contract with ID
+                    ContractController.showAllContracts();
                     System.out.printf("Please select an ID from the list above%n");
                     id = GetInput.getIntFromUser("ID");
-                    RenterController.showRenter(id);
+                    ContractController.showContract(id);
                     break;
-                case 3: // Update renter info
+                case 3: // Update contract info
                     System.out.println("Not implemented yet.");
                     break;
-                case 4: // Register new renter
-                    RenterController.createRenter();
+                case 4: // Register new contract
+                    ContractController.createContract();
                     break;
-                case 5: // Delete renter
-                    System.out.println("Not implemented yeet.");
+                case 5: // Delete contract
+                    System.out.println("Not implemented yet.");
                     break;
             }
         }

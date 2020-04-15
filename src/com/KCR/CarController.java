@@ -225,7 +225,7 @@ public class CarController {
         con.executeUpdate(deleteQuery);
     }
 
-    private static int getValidId(int id, Connector con) throws SQLException {
+    public static int getValidId(int id, Connector con) throws SQLException {
         ResultSet rs = con.executeQuery("SELECT * FROM cars WHERE id = " + id);
         while(rs.next() == false){
             System.out.printf("No cars found with the given ID. Please select an ID from the following list:%n");

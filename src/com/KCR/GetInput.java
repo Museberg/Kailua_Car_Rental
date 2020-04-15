@@ -52,6 +52,14 @@ public class GetInput {
         return scanInput.nextInt();
     }
 
+    public static int getIntAbove(int min, String title){
+        int input = getIntFromUser(title);
+        while(min >= input){
+            input = getIntFromUser(title);
+        }
+        return input;
+    }
+
     // Gets a double from user
     public static double getDoubleFromUser() {
         Scanner scanInput = new Scanner(System.in);
