@@ -39,7 +39,7 @@ public class RenterController {
         ResultSet rsZipCode = con.executeQuery(zipQuery);
         rsZipCode.next();
 
-        System.out.println("Car:");
+        System.out.println("Renter:");
         System.out.printf("%-15s %d%n", "ID:", rs.getInt("id"));
         System.out.printf("%-15s %s%n", "First name:", rs.getString("first_name"));
         System.out.printf("%-15s %s%n", "Last name.:", rs.getString("last_name"));

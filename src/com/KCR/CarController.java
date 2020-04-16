@@ -161,10 +161,7 @@ public class CarController {
         String checkModel = String.format("SELECT * FROM models WHERE model = '%s'", model);
         String queryModel = String.format("INSERT INTO models VALUES ('%s', '%d')", model, brandID);
         // Inserting model if not present in database
-        rs = con.executeQuery(checkModel);
-        if(!rs.next()) {
-            con.executeUpdate(queryModel);
-        }
+        con.insertIfNotExistsString(checkModel, queryModel, "model");
 
         String queryCar = String.format("INSERT INTO cars VALUES (0, '%s', '%s', '%s', '%d', '%s', '%s', '%s', %b, '%d', '%d', '%s', '%d', %b)",
                 regNumber, firstRegistration, fuelType, odometer, model, ct, gearType, airCon, ccm, hp, seatType, seatNumber, cruiseControl);

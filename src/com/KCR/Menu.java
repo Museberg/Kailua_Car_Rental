@@ -27,13 +27,13 @@ public class Menu {
     public static void executeOption(int option) throws SQLException, ParseException {
         int id;
         switch (option) {
-            case 1: // Show list of cars
+            case 1: // Show car menu
                 carMenu();
                 break;
-            case 2: // Show car with ID
+            case 2: // Show renter menu
                 renterMenu();
                 break;
-            case 3: // Update car info
+            case 3: // Show contract menu
                 contractsMenu();
                 break;
             case 0: // Save and exit
