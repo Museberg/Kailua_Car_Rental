@@ -39,7 +39,7 @@ CREATE TABLE cars
 	id					INT									NOT NULL	PRIMARY KEY 	AUTO_INCREMENT,
     registration_number	VARCHAR(10)							NOT NULL	UNIQUE,
     first_registration	DATE								NOT NULL,
-    fuel_type			VARCHAR(45)							NOT NULL,
+    fuel_type			VARCHAR(20)							NOT NULL,
     odometer			INT									NOT NULL,
     model				VARCHAR(20)							NOT NULL,
     car_type			ENUM('luxury', 'family', 'sport')	NOT NULL, 
