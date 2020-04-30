@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit</title>
+    <link rel="stylesheet" type="text/css" href="../../myCSS.css">
+</head>
+<body>
+    <div class="topnav">
+        <a href="/">Home</a>
+        <a class="active" href="/cars/list">Cars</a>
+        <a href="/contracts/list">Contracts</a>
+        <a href="/renters/list">Renters</a>
+    </div>
+    <div>
+        <h1 th:text="${car.brand} + ' ' + ${car.model} + ' - ' + ${car.registration_number}"></h1>
+    </div>
+    <form action="/cars/update" method="post">
+        <table class="fancyTable">
+            <tr>
+                <td>Odometer</td>
+                <td>
+                    <input type="text" name="odometer" th:value="${car.odometer}">
+                </td>
+            </tr>
+            <tr>
+                <td>Registration number</td>
+                <td>
+                    <input type="text" name="registration_number" th:value="${car.registration_number}">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="id" name="id" th:value="${car.id}" type="hidden"/>
+                </td>
+            </tr>
+        </table>
+        <input type="submit" value="Save">
+    </form>
+</body>
+</html>

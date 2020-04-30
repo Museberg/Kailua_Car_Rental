@@ -16,7 +16,7 @@ public class CarRepo {
     JdbcTemplate template;
 
     public List<Car> fetchAll(){
-        String sql = "SELECT *, brand_name as brand FROM cars" +
+        String sql = "SELECT *, cars.id AS ID, brand_name AS brand FROM cars" +
                     " JOIN models ON cars.model = models.model" +
                     " JOIN brands ON models.brand_id = brands.id";
         RowMapper<Car> rowMapper = new BeanPropertyRowMapper<>(Car.class);
@@ -28,6 +28,18 @@ public class CarRepo {
     }
 
     public Car findCarById(int id){
+        String sql = "SELECT *, cars.id AS ID, brand_name AS brand FROM cars" +
+                " JOIN models ON cars.model = models.model" +
+                " JOIN brands ON models.brand_id = brands.id WHERE cars.id = ?";
+        RowMapper<Car> rowMapper = new BeanPropertyRowMapper<>(Car.class);
+        return template.queryForObject(sql, rowMapper, id);
+    }
+
+    public Car updateCar(int id, Car c) {
+        String sql = "UPDATE cars SET registration_number = ?, odometer = ? WHERE id = ?";
+        template.update(sql, c.getRegistration_number(), c.getOdometer(), c.getId());
+        System.out.println(c.getId());
+        System.out.println(id);
         return null;
     }
 

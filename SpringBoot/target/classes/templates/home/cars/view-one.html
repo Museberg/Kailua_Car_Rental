@@ -2,8 +2,8 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>List of cars</title>
-    <link rel="stylesheet" type="text/css" href="../myCSS.css">
+    <title>Car</title>
+    <link rel="stylesheet" type="text/css" href="../../myCSS.css">
 </head>
 <body>
     <div class="topnav">
@@ -14,27 +14,25 @@
     </div>
 
     <table class="fancyTable">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Brand</th>
-                <th>Model</th>
-                <th>Reg. number</th>
-                <th>First reg.</th>
-                <th>Fuel type</th>
-                <th>Odometer</th>
-                <th>Car type</th>
-                <th>Gear type</th>
-                <th>Air conditioning</th>
-                <th>CCM</th>
-                <th>HP</th>
-                <th>Seat type</th>
-                <th>Seat number</th>
-                <th>Cruise control</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tr th:each = "car: ${cars}">
+        <tr>
+            <th>ID</th>
+            <th>Brand</th>
+            <th>Model</th>
+            <th>Reg. number</th>
+            <th>First reg.</th>
+            <th>Fuel type</th>
+            <th>Odometer</th>
+            <th>Car type</th>
+            <th>Gear type</th>
+            <th>Air conditioning</th>
+            <th>CCM</th>
+            <th>HP</th>
+            <th>Seat type</th>
+            <th>Seat number</th>
+            <th>Cruise control</th>
+            <th></th>
+        </tr>
+        <tr>
             <td th:text = "${car.id}" />
             <td th:text = "${car.brand}" />
             <td th:text = "${car.model}" />
@@ -50,18 +48,7 @@
             <td th:text = "${car.seat_type}" />
             <td th:text = "${car.seat_number}" />
             <td th:text = "${car.cruise_control}" />
-            <td>
-                <a th:href="@{'/cars/view-one/'+${car.id}}">
-                    <button>View car</button>
-                </a>
-            </td>
-            <td>
-                <a th:href="@{'/cars/edit/'+${car.id}}">
-                    <button>Edit car</button>
-                </a>
-            </td>
         </tr>
     </table>
-
 </body>
 </html>
