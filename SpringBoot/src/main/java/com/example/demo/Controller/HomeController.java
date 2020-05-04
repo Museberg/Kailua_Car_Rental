@@ -1,14 +1,13 @@
 package com.example.demo.Controller;
 
 import com.example.demo.Model.Car;
+import com.example.demo.Model.CarModel;
+import com.example.demo.service.CarModelService;
 import com.example.demo.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,6 +15,8 @@ import java.util.List;
 public class HomeController {
     @Autowired
     CarService carService;
+    @Autowired
+    CarModelService carModelService;
 
     @GetMapping("/")
     public String index(){
@@ -35,6 +36,19 @@ public class HomeController {
         return "home/cars/view-one";
     }
 
+    @GetMapping("/cars/create")
+    public String createCar(Model model) {
+        List<CarModel> carModels = carModelService.fetchAll();
+        model.addAttribute("carModels", carModels);
+        return "home/cars/create";
+    }
+
+    @PostMapping("/cars/create")
+    public String addCar(@ModelAttribute Car car) {
+        carService.addCar(car);
+        return "redirect:/cars/list";
+    }
+
     @GetMapping("/cars/edit/{id}")
     public String editCar(@PathVariable("id") int id, Model model) {
         model.addAttribute("car", carService.findCarById(id));
@@ -50,6 +64,12 @@ public class HomeController {
         return "redirect:/cars/list";
     }
 
+    @GetMapping("/cars/delete/{id}")
+    public String deleteCar(@PathVariable("id") int id) {
+        carService.deleteCar(id);
+        return "redirect:/cars/list";
+    }
+
     @GetMapping("/contracts/list")
     public String contractList(){
         return "home/contracts/list";
@@ -59,7 +79,6 @@ public class HomeController {
     public String renterList(){
         return "home/renters/list";
     }
-
 
 
 }

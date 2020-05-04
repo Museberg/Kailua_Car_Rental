@@ -9,7 +9,7 @@ public class Car {
     @Id
     private int id;
     private String registration_number;
-    private Date first_registration;
+    private String first_registration;
     private String fuel_type;
     private int odometer;
     private String model;
@@ -29,7 +29,7 @@ public class Car {
     public Car() {
     }
 
-    public Car(int id, String registration_number, Date first_registration, String fuel_type, int odometer, String model,
+    public Car(int id, String registration_number, String first_registration, String fuel_type, int odometer, String model,
                String car_type, String gear_type, boolean air_conditioning, Integer ccm, int hp, String seat_type,
                int seat_number, boolean cruise_control, String brand) {
         this.id = id;
@@ -133,11 +133,11 @@ public class Car {
         return id;
     }
 
-    public Date getFirst_registration() {
+    public String getFirst_registration() {
         return first_registration;
     }
 
-    public void setFirst_registration(Date first_registration) {
+    public void setFirst_registration(String first_registration) {
         this.first_registration = first_registration;
     }
 

@@ -24,6 +24,10 @@ public class CarRepo {
     }
 
     public Car addCar(Car c){
+        String sql = "INSERT INTO cars VALUES (0, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        template.update(sql, c.getRegistration_number(), c.getFirst_registration(),
+                c.getFuel_type(), c.getOdometer(), c.getModel(), c.getCar_type(), c.getGear_type(),
+                c.isAir_conditioning(), c.getCcm(), c.getHp(), c.getSeat_type(), c.getSeat_number(), c.isCruise_control());
         return null;
     }
 
@@ -44,6 +48,8 @@ public class CarRepo {
     }
 
     public boolean deleteCar(int id){
+        String sql = "DELETE FROM cars WHERE id = ?";
+        template.update(sql, id);
         return false;
     }
 }

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Car</title>
+    <link rel="stylesheet" type="text/css" href="../../myCSS.css">
+</head>
+<body>
+    <div class="topnav">
+        <a href="/">Home</a>
+        <a class="active" href="/cars/list">Cars</a>
+        <a href="/contracts/list">Contracts</a>
+        <a href="/renters/list">Renters</a>
+    </div>
+    <h1>Create a car</h1>
+    <form action="/cars/create" method="post">
+        <table>
+            <tr>
+                <td><label>Registration number:</label></td>
+                <td><input type="text" name="registration_number"></td>
+            </tr>
+            <tr>
+                <td><label>First registration:</label></td>
+                <td><input type="date" name="first_registration"></td>
+            </tr>
+            <tr>
+                <td><label>Fuel type:</label></td>
+                <td><input type="text" name="fuel_type"></td>
+            </tr>
+            <tr>
+                <td><label>Odometer:</label></td>
+                <td><input type="text" name="odometer"></td>
+            </tr>
+            <tr>
+                <td><label>Model:</label></td>
+                <td>
+                    <select id="model" name="model">
+                        <option th:each="carModel : ${carModels}" th:text="${carModel.brand_name} + ' ' + ${carModel.model}" th:value="${carModel.model}"></option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label>Car type:</label></td>
+                <td>
+                    <label for="luxury">Luxury</label>
+                    <input id="luxury" type="radio" value="luxury" name="car_type">
+                </td>
+                <td>
+                    <label for="family">Family</label>
+                    <input id="family" type="radio" value="family" name="car_type">
+                </td>
+                <td>
+                    <label for="sport">Sport</label>
+                    <input id="sport" type="radio" value="sport" name="car_type">
+                </td>
+            </tr>
+            <tr>
+                <td><label>Gear type:</label></td>
+                <td>
+                    <label for="automatic">Automatic</label>
+                    <input id="automatic" type="radio" value="automatic" name="gear_type">
+                </td>
+                <td>
+                    <label for="manual">Manual</label>
+                    <input id="manual" type="radio" value="manual" name="gear_type">
+                </td>
+            </tr>
+            <tr>
+                <td><label>Air conditioning:</label></td>
+                <td>
+                    <label for="true">Yes</label>
+                    <input id="true" type="radio" value="true" name="air_conditioning">
+                </td>
+                <td>
+                    <label for="false">No</label>
+                    <input id="false" type="radio" value="false" name="air_conditioning">
+                </td>
+            </tr>
+            <tr>
+                <td><label>CCM:</label></td>
+                <td><input type="number" name="ccm"></td>
+            </tr>
+            <tr>
+                <td><label>HP:</label></td>
+                <td><input type="number" name="hp"></td>
+            </tr>
+            <tr>
+                <td><label>Seat type:</label></td>
+                <td><input type="text" name="seat_type"></td>
+            </tr>
+            <tr>
+                <td><label>Seat number:</label></td>
+                <td><input type="number" name="seat_number"></td>
+            </tr>
+            <tr>
+                <td><label>Cruise control:</label></td>
+                <td>
+                    <label for="yes">Yes</label>
+                    <input id="yes" type="radio" value="true" name="cruise_control">
+                </td>
+                <td>
+                    <label for="no">No</label>
+                    <input id="no" type="radio" value="false" name="cruise_control">
+                </td>
+            </tr>
+        </table>
+        <input type="submit" value="Add car">
+    </form>
+    
+
+</body>
+</html>

@@ -13,6 +13,12 @@
         <a href="/renters/list">Renters</a>
     </div>
 
+    <div style="padding: 10px">
+        <a th:href="@{/cars/create}">
+            <button style="padding: 10px">Create car</button>
+        </a>
+    </div>
+
     <table class="fancyTable">
         <thead>
             <tr>
@@ -58,6 +64,11 @@
             <td>
                 <a th:href="@{'/cars/edit/'+${car.id}}">
                     <button>Edit car</button>
+                </a>
+            </td>
+            <td>
+                <a th:href="@{'/cars/delete/'+${car.id}}">
+                    <button>Delete car</button>
                 </a>
             </td>
         </tr>
