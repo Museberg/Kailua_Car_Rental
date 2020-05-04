@@ -1,16 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>List of contracts</title>
     <link rel="stylesheet" type="text/css" href="../myCSS.css">
 </head>
 <body>
-<div class="topnav">
-    <a href="/">Home</a>
-    <a href="/cars/list">Cars</a>
-    <a class="active" href="/contracts/list">Contracts</a>
-    <a href="/renters/list">Renters</a>
-</div>
+    <div class="topnav">
+        <a href="/">Home</a>
+        <a href="/cars/list">Cars</a>
+        <a class="active" href="/contracts/list">Contracts</a>
+        <a href="/renters/list">Renters</a>
+    </div>
+
+    <table class="fancyTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Car brand</th>
+                <th>Car model</th>
+                <th>Renter ID</th>
+                <th>Start Date</th>
+                <th>End date</th>
+                <th>Start KM</th>
+                <th>Max KM</th>
+                <th></th>
+            </tr>
+        </thead>
+            <tr th:each = "contract: ${contracts}">
+                <td th:text = "${contract.id}" />
+                <td th:text = "${contract.carBrand}" />
+                <td th:text = "${contract.carModel}" />
+                <td th:text = "${contract.renterId}" />
+                <td th:text = "${contract.startDate}" />
+                <td th:text = "${contract.endDate}" />
+                <td th:text = "${contract.startKm}" />
+                <td th:text = "${contract.maxKm}" />
+                <td>
+                    <a th:href="@{'/contracts'}">
+                        <button>View contract</button>
+                    </a>
+                </td>
+                <td>
+                    <a th:href="@{'/contracts'}">
+                        <button>Edit contract</button>
+                    </a>
+                </td>
+            </tr>
+    </table>
 </body>
 </html>

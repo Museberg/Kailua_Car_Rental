@@ -1,16 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>List of renters</title>
     <link rel="stylesheet" type="text/css" href="../myCSS.css">
 </head>
 <body>
-<div class="topnav">
-    <a href="/">Home</a>
-    <a href="/cars/list">Cars</a>
-    <a href="/contracts/list">Contracts</a>
-    <a class="active" href="/renters/list">Renters</a>
-</div>
+    <div class="topnav">
+        <a href="/">Home</a>
+        <a href="/cars/list">Cars</a>
+        <a href="/contracts/list">Contracts</a>
+        <a class="active" href="/renters/list">Renters</a>
+    </div>
+    <table class="fancyTable">
+        <thead>
+        <tr>
+            <th>Renter ID</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Driver since</th>
+            <th>Address</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tr th:each = "renter: ${renters}">
+            <td th:text = "${renter.renterId}" />
+            <td th:text = "${renter.firstName}" />
+            <td th:text = "${renter.lastName}" />
+            <td th:text = "${renter.phone}" />
+            <td th:text = "${renter.email}" />
+            <td th:text = "${renter.driverSince}" />
+            <td th:text = "${renter.address}" />
+            <td>
+                <a th:href="@{'/renters'}">
+                    <button>View renter</button>
+                </a>
+            </td>
+            <td>
+                <a th:href="@{'/renters'}">
+                    <button>Edit renter</button>
+                </a>
+            </td>
+        </tr>
+    </table>
 </body>
 </html>
