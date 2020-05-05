@@ -2,7 +2,6 @@ package com.example.demo.Model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.util.Date;
 
 @Entity
 public class Contract {
@@ -11,15 +10,15 @@ public class Contract {
     private String carBrand;
     private String carModel;
     private int renterId;
-    private Date startDate;
-    private Date endDate;
+    private String startDate;
+    private String endDate;
     private int startKm;
     private int maxKm;
 
     public Contract() {
     }
 
-    public Contract(int id, String carBrand, String carModel, int renterId, Date startDate, Date endDate, int startKm, int maxKm) {
+    public Contract(int id, String carBrand, String carModel, int renterId, String startDate, String endDate, int startKm, int maxKm) {
         this.id = id;
         this.carBrand = carBrand;
         this.carModel= carModel;
@@ -62,19 +61,19 @@ public class Contract {
         this.renterId = renterId;
     }
 
-    public Date getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 

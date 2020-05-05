@@ -1,12 +1,16 @@
 package com.example.demo.repository;
 
+import com.example.demo.Model.Address;
 import com.example.demo.Model.Renter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 
 @Repository
@@ -15,13 +19,26 @@ public class RenterRepo {
     JdbcTemplate template;
 
     public List<Renter> fetchAll(){
-        String sql = "SELECT * from renters";
+        String sql = "SELECT * from renters JOIN addresses ON renters.address_id = addresses.id";
         RowMapper<Renter> rowMapper = new BeanPropertyRowMapper<>(Renter.class);
         return template.query(sql, rowMapper);
     }
     public Renter addRenter(Renter r){
-        return null;
+        String sqlZipCode = "INSERT INTO zip_codes VALUES (?, ?, ?)";
+        template.update(sqlZipCode, r.getZip(), r.getCity(), r.getCountry());
+
+        String sqlAddress = "INSERT INTO addresses VALUES (0, ?, ?, ?, ?)";
+        template.update(sqlAddress, r.getStreet_name(), r.getStreet_number(), r.getApartment_number(), r.getZip());
+
+        String sqlGetId = "SELECT id FROM addresses WHERE (0, r.getStreet_name(), r.getStreet_number(), r.getApartment_number(), r.getZip())";
+        RowMapper<Address> rowMapper = new BeanPropertyRowMapper<>(Address.class);
+        List<Address> addressList = template.query(sqlGetId, rowMapper);
+        String sql = "INSERT INTO renters VALUES (0, ?, ?, ?, ?, ?, ?, ?)";
+        template.update(sql, r.getFirst_name(), r.getLast_name(), r.getTelephone(), r.getEmail(), r.getDriver_license(),
+                    r.getDriver_since(), r.getCity());
+            return null;
     }
+
     public Renter findRenterById(int id){
         return null;
     }

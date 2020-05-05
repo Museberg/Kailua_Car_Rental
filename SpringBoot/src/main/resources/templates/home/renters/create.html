@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/../myCSS.css">
+    <title>Create a renter</title>
+</head>
+<body>
+    <div class="topnav">
+        <a href="/">Home</a>
+        <a href="/cars/list">Cars</a>
+        <a href="/contracts/list">Contracts</a>
+        <a class="active" href="/renters/list">Renters</a>
+    </div>
+    <form action="/renters/create" method="post">
+        <table>
+            <tr>
+                <td><label>First name:</label></td>
+                <td><input type="text" name="first_name"></td>
+            </tr>
+            <tr>
+                <td><label>Last name:</label></td>
+                <td><input type="text" name="last_name"></td>
+            </tr>
+            <tr>
+                <td><label>Telephone:</label></td>
+                <td><input type="text" name="telephone"></td>
+            </tr>
+            <tr>
+                <td><label>Email:</label></td>
+                <td><input type="text" name="email"></td>
+            </tr>
+            <tr>
+                <td><label>Driver licence:</label></td>
+                <td><input type="text" name="driver_license"></td>
+            </tr>
+            <tr>
+                <td><label>Driver since:</label></td>
+                <td><input type="text" name="driver_since"></td>
+            </tr>
+            <tr>
+                <td><label>Street name:</label></td>
+                <td><input type="text" name="street_name"></td>
+            </tr>
+            <tr>
+                <td><label>Street number:</label></td>
+                <td><input type="text" name="street_number"></td>
+            </tr>
+            <tr>
+                <td><label>Apartment number:</label></td>
+                <td><input type="text" name="apartment_number"></td>
+            </tr>
+            <tr>
+                <td><label>Zip code:</label></td>
+                <td><input type="text" name="zip_code"></td>
+            </tr>
+            <tr>
+                <td><label>City:</label></td>
+                <td><input type="text" name="city"></td>
+            </tr>
+            <tr>
+                <td><label>Country:</label></td>
+                <td><input type="text" name="country"></td>
+            </tr>
+        </table>
+        <input type="submit" value="Add renter">
+    </form>
+
+
+</body>
+</html>

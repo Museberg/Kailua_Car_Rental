@@ -2,8 +2,12 @@ package com.example.demo.Controller;
 
 import com.example.demo.Model.Car;
 import com.example.demo.Model.CarModel;
+import com.example.demo.Model.Contract;
+import com.example.demo.Model.Renter;
 import com.example.demo.service.CarModelService;
 import com.example.demo.service.CarService;
+import com.example.demo.service.ContractService;
+import com.example.demo.service.RenterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +21,10 @@ public class HomeController {
     CarService carService;
     @Autowired
     CarModelService carModelService;
+    @Autowired
+    ContractService contractService;
+    @Autowired
+    RenterService renterService;
 
     @GetMapping("/")
     public String index(){
@@ -71,14 +79,29 @@ public class HomeController {
     }
 
     @GetMapping("/contracts/list")
-    public String contractList(){
+    public String contractList(Model model){
+        List<Contract> contracts = contractService.fetchAll();
+        model.addAttribute("contracts", contracts);
         return "home/contracts/list";
     }
 
     @GetMapping("/renters/list")
-    public String renterList(){
+    public String renterList(Model model){
+        List<Renter> renters = renterService.fetchAll();
+        model.addAttribute("renters", renters);
         return "home/renters/list";
     }
 
+    @GetMapping("/renters/create")
+    public String createRenters(Model model) {
+        List<Renter> renters = renterService.fetchAll();
+        model.addAttribute("renterModel", renters);
+        return "home/renters/create";
+    }
+    @PostMapping("/renters/create")
+    public String addRenter(@ModelAttribute Renter renter) {
+        renterService.addRenter(renter);
+        return "redirect:/renters/list";
+    }
 
 }
