@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Create contract</title>
+    <link rel="stylesheet" type="text/css" href="../../myCSS.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+<div class="topnav">
+    <a href="/">Home</a>
+    <a href="/cars/list">Cars</a>
+    <a class="active" href="/contracts/list">Contracts</a>
+    <a href="/renters/list">Renters</a>
+</div>
+<h1>Create a contract</h1>
+<form action="/contracts/create" method="post">
+    <table>
+        <tr>
+            <td><label>Name:</label></td>
+            <td>
+                <select name="renter_id">
+                    <option th:each="renter : ${renters}" th:text="${renter.first_name} + ' ' + ${renter.last_name}" th:value="${renter.id}"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><label>Car:</label></td>
+
+            <td>
+                <select id="model" name="car_id">
+                    <option th:each="car : ${cars}" th:text="${car.brand} + ' ' + ${car.model} + ' (' + ${car.registration_number + ')'}"th:value="${car.id}"></option>
+                </select>
+            </td>
+        </tr>
+            <tr>
+                <td><label>Start date:</label></td>
+                <td><input type="date" name="start_date"></td>
+            </tr>
+        <tr>
+            <td><label>End date:</label></td>
+            <td><input type="date" name="end_date"></td>
+        </tr>
+        <tr>
+            <td><label>Start KM</label></td>
+            <td><input type="number" name="start_km"></td>
+        </tr>
+        <tr>
+            <td><label>Max KM:</label></td>
+            <td><input type="number" name="max_km"></td>
+        </tr>
+        </tr>
+    </table>
+    <input type="submit" value="Add car">
+</form>
+
+</body>
+</html>

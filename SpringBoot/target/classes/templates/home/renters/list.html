@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>List of renters</title>
-    <link rel="stylesheet" type="text/css" href="../myCSS.css">
+    <link rel="stylesheet" type="text/css" href="/../../myCSS.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
     <div class="topnav">
@@ -12,7 +13,16 @@
         <a href="/contracts/list">Contracts</a>
         <a class="active" href="/renters/list">Renters</a>
     </div>
-    <table class="fancyTable">
+    <div class="jumbotron">
+        <h1 class="display-4">Renter list</h1>
+        <p class="lead">This is the full list of all renters who is/has been a customer of Kailua Car Rental</p>
+    </div>
+    <div style="padding: 10px">
+        <a th:href="@{/renters/create}">
+            <button style="padding: 10px">Create renter</button>
+        </a>
+    </div>
+    <table class="table">
         <thead>
         <tr>
             <th>Renter ID</th>
@@ -21,18 +31,16 @@
             <th>Phone</th>
             <th>Email</th>
             <th>Driver since</th>
-            <th>Address</th>
             <th></th>
         </tr>
         </thead>
         <tr th:each = "renter: ${renters}">
-            <td th:text = "${renter.renterId}" />
-            <td th:text = "${renter.firstName}" />
-            <td th:text = "${renter.lastName}" />
-            <td th:text = "${renter.phone}" />
+            <td th:text = "${renter.id}" />
+            <td th:text = "${renter.first_name}" />
+            <td th:text = "${renter.last_name}" />
+            <td th:text = "${renter.telephone}" />
             <td th:text = "${renter.email}" />
-            <td th:text = "${renter.driverSince}" />
-            <td th:text = "${renter.address}" />
+            <td th:text = "${renter.driver_since}" />
             <td>
                 <a th:href="@{'/renters'}">
                     <button>View renter</button>

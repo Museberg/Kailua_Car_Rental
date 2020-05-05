@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>List of contracts</title>
-    <link rel="stylesheet" type="text/css" href="../myCSS.css">
+    <link rel="stylesheet" type="text/css" href="/../../myCSS.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
     <div class="topnav">
@@ -12,14 +13,21 @@
         <a class="active" href="/contracts/list">Contracts</a>
         <a href="/renters/list">Renters</a>
     </div>
-
-    <table class="fancyTable">
+    <div class="jumbotron">
+        <h1 class="display-4">Contract list</h1>
+        <p class="lead">This is the full list of all contracts with Kailua Car Rental</p>
+    </div>
+    <div style="padding: 10px">
+        <a th:href="@{/contracts/create}">
+            <button style="padding: 10px">Create contract</button>
+        </a>
+    </div>
+    <table class="table">
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Car brand</th>
                 <th>Car model</th>
-                <th>Renter ID</th>
                 <th>Start Date</th>
                 <th>End date</th>
                 <th>Start KM</th>
@@ -29,21 +37,25 @@
         </thead>
             <tr th:each = "contract: ${contracts}">
                 <td th:text = "${contract.id}" />
-                <td th:text = "${contract.carBrand}" />
-                <td th:text = "${contract.carModel}" />
-                <td th:text = "${contract.renterId}" />
-                <td th:text = "${contract.startDate}" />
-                <td th:text = "${contract.endDate}" />
-                <td th:text = "${contract.startKm}" />
-                <td th:text = "${contract.maxKm}" />
+                <td th:text = "${contract.car_brand}" />
+                <td th:text = "${contract.car_model}" />
+                <td th:text = "${contract.start_date}" />
+                <td th:text = "${contract.end_date}" />
+                <td th:text = "${contract.start_km}" />
+                <td th:text = "${contract.max_km}" />
                 <td>
-                    <a th:href="@{'/contracts'}">
+                    <a th:href="@{'/contracts/view-one/'+${contract.id}}">
                         <button>View contract</button>
                     </a>
                 </td>
                 <td>
-                    <a th:href="@{'/contracts'}">
+                    <a th:href="@{'/contracts/edit/'+${contract.id}}">
                         <button>Edit contract</button>
+                    </a>
+                </td>
+                <td>
+                    <a th:href="@{'/contracts/delete/'+${contract.id}}">
+                        <button>Delete contract</button>
                     </a>
                 </td>
             </tr>

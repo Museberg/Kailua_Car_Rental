@@ -66,9 +66,7 @@ public class HomeController {
 
     @PostMapping("/cars/update")
     public String updateCar(@ModelAttribute Car car) {
-        System.out.println("Controller ID: " + car.getId());
         carService.updateCar(car.getId(), car);
-        System.out.println("Controller Odometer: " + car.getOdometer());
         return "redirect:/cars/list";
     }
 
@@ -83,6 +81,42 @@ public class HomeController {
         List<Contract> contracts = contractService.fetchAll();
         model.addAttribute("contracts", contracts);
         return "home/contracts/list";
+    }
+
+    @GetMapping("/contracts/view-one/{id}")
+    public String viewContract(@PathVariable("id") int id, Model model) {
+        model.addAttribute("contract", contractService.findContractById(id));
+        return "home/contracts/view-one";
+    }
+    @GetMapping("/contracts/edit/{id}")
+    public String editContract(@PathVariable("id") int id, Model model) {
+        model.addAttribute("contract", contractService.findContractById(id));
+        return "home/contracts/edit";
+    }
+
+    @PostMapping("/contracts/update")
+    public String updateContract(@ModelAttribute Contract contract) {
+        contractService.updateContract(contract.getId(), contract);
+        return "redirect:/contracts/list";
+    }
+    @GetMapping("/contracts/create")
+    public String createContract(Model model) {
+        List<Renter> renters = renterService.fetchAll();
+        List<Car> cars = carService.fetchAll();
+        model.addAttribute("renters", renters);
+        model.addAttribute("cars", cars);
+        return "home/contracts/create";
+    }
+
+    @PostMapping("/contracts/create")
+    public String addContract(@ModelAttribute Contract contract) {
+        contractService.addContract(contract);
+        return "redirect:/contracts/list";
+    }
+    @GetMapping("/contracts/delete/{id}")
+    public String deleteContract(@PathVariable("id") int id) {
+        contractService.deleteContract(id);
+        return "redirect:/contracts/list";
     }
 
     @GetMapping("/renters/list")

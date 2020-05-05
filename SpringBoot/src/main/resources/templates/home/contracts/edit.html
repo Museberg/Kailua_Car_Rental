@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../../myCSS.css">
+    <title>Edit Contract</title>
+</head>
+<body>
+<div class="topnav">
+    <a href="/">Home</a>
+    <a class="active" href="/cars/list">Cars</a>
+    <a href="/contracts/list">Contracts</a>
+    <a href="/renters/list">Renters</a>
+</div>
+
+<form action="/contracts/update" method="post">
+    <table class="fancyTable">
+        <tr>
+            <td>End date</td>
+            <td>
+                <input type="text" name="end_date" th:value="${contract.end_date}">
+            </td>
+        </tr>
+        <tr>
+            <td>Max KM</td>
+            <td>
+                <input type="text" name="max_km" th:value="${contract.max_km}">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input id="id" name="id" th:value="${contract.id}" type="hidden"/>
+            </td>
+        </tr>
+    </table>
+    <input type="submit" value="Save">
+</form>
+</body>
+</html>

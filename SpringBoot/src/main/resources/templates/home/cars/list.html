@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>List of cars</title>
-    <link rel="stylesheet" type="text/css" href="../myCSS.css">
+    <link rel="stylesheet" type="text/css" href="/../../myCSS.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
     <div class="topnav">
@@ -12,6 +13,10 @@
         <a href="/contracts/list">Contracts</a>
         <a href="/renters/list">Renters</a>
     </div>
+    <div class="jumbotron">
+        <h1 class="display-4">Car list</h1>
+        <p class="lead">This is the full list of all cars which Kailua Car Rental owns</p>
+    </div>
 
     <div style="padding: 10px">
         <a th:href="@{/cars/create}">
@@ -19,7 +24,7 @@
         </a>
     </div>
 
-    <table class="fancyTable">
+    <table class="table">
         <thead>
             <tr>
                 <th>ID</th>

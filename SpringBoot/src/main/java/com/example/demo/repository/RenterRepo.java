@@ -30,12 +30,15 @@ public class RenterRepo {
         String sqlAddress = "INSERT INTO addresses VALUES (0, ?, ?, ?, ?)";
         template.update(sqlAddress, r.getStreet_name(), r.getStreet_number(), r.getApartment_number(), r.getZip());
 
-        String sqlGetId = "SELECT id FROM addresses WHERE (0, r.getStreet_name(), r.getStreet_number(), r.getApartment_number(), r.getZip())";
+        String sqlGetId = "SELECT id FROM addresses WHERE street_name = ? && street_number = ? && apartment_number = ? && zip_code = ?";
         RowMapper<Address> rowMapper = new BeanPropertyRowMapper<>(Address.class);
-        List<Address> addressList = template.query(sqlGetId, rowMapper);
+        List<Address> addressList = template.query(sqlGetId, rowMapper, r.getStreet_name(), r.getStreet_number(), r.getApartment_number(), r.getZip());
+        int addressId = addressList.get(0).getId();
+
+
         String sql = "INSERT INTO renters VALUES (0, ?, ?, ?, ?, ?, ?, ?)";
         template.update(sql, r.getFirst_name(), r.getLast_name(), r.getTelephone(), r.getEmail(), r.getDriver_license(),
-                    r.getDriver_since(), r.getCity());
+                    r.getDriver_since(), addressId);
             return null;
     }
 

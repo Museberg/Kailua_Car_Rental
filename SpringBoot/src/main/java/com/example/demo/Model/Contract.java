@@ -7,26 +7,32 @@ import javax.persistence.Id;
 public class Contract {
     @Id
     private int id;
-    private String carBrand;
-    private String carModel;
-    private int renterId;
-    private String startDate;
-    private String endDate;
-    private int startKm;
-    private int maxKm;
+    private int car_id;
+    private String car_brand;
+    private String car_model;
+    private int renter_id;
+    private String start_date;
+    private String end_date;
+    private int start_km;
+    private int max_km;
+    private String first_name;
+    private String last_name;
 
     public Contract() {
     }
 
-    public Contract(int id, String carBrand, String carModel, int renterId, String startDate, String endDate, int startKm, int maxKm) {
+    public Contract(int id, int car_id, String car_brand, String car_model, int renter_id, String start_date, String end_date, int start_km, int max_km, String first_name, String last_name) {
         this.id = id;
-        this.carBrand = carBrand;
-        this.carModel= carModel;
-        this.renterId = renterId;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.startKm = startKm;
-        this.maxKm = maxKm;
+        this.car_id = car_id;
+        this.car_brand = car_brand;
+        this.car_model = car_model;
+        this.renter_id = renter_id;
+        this.start_date = start_date;
+        this.end_date = end_date;
+        this.start_km = start_km;
+        this.max_km = max_km;
+        this.first_name = first_name;
+        this.last_name = last_name;
     }
 
     public int getId() {
@@ -37,59 +43,83 @@ public class Contract {
         this.id = id;
     }
 
-    public String getCarBrand() {
-        return carBrand;
+    public int getCar_id() {
+        return car_id;
     }
 
-    public void setCarBrand(String carBrand) {
-        this.carBrand = carBrand;
+    public void setCar_id(int car_id) {
+        this.car_id = car_id;
     }
 
-    public String getCarModel() {
-        return carModel;
+    public String getCar_brand() {
+        return car_brand;
     }
 
-    public void setCarModel(String carModel) {
-        this.carModel = carModel;
+    public void setCar_brand(String carBrand) {
+        this.car_brand = carBrand;
     }
 
-    public int getRenterId() {
-        return renterId;
+    public String getCar_model() {
+        return car_model;
     }
 
-    public void setRenterId(int renterId) {
-        this.renterId = renterId;
+    public void setCar_model(String carModel) {
+        this.car_model = carModel;
     }
 
-    public String getStartDate() {
-        return startDate;
+    public int getRenter_id() {
+        return renter_id;
     }
 
-    public void setStartDate(String startDate) {
-        this.startDate = startDate;
+    public void setRenter_id(int renterId) {
+        this.renter_id = renterId;
     }
 
-    public String getEndDate() {
-        return endDate;
+    public String getStart_date() {
+        return start_date;
     }
 
-    public void setEndDate(String endDate) {
-        this.endDate = endDate;
+    public void setStart_date(String startDate) {
+        this.start_date = startDate;
     }
 
-    public int getStartKm() {
-        return startKm;
+    public String getEnd_date() {
+        return end_date;
     }
 
-    public void setStartKm(int startKm) {
-        this.startKm = startKm;
+    public void setEnd_date(String endDate) {
+        this.end_date = endDate;
     }
 
-    public int getMaxKm() {
-        return maxKm;
+    public int getStart_km() {
+        return start_km;
     }
 
-    public void setMaxKm(int maxKm) {
-        this.maxKm = maxKm;
+    public void setStart_km(int startKm) {
+        this.start_km = startKm;
+    }
+
+    public int getMax_km() {
+        return max_km;
+    }
+
+    public void setMax_km(int maxKm) {
+        this.max_km = maxKm;
+    }
+
+    public String getFirst_name() {
+        return first_name;
+    }
+
+    public void setFirst_name(String first_name) {
+        this.first_name = first_name;
+    }
+
+    public String getLast_name() {
+        return last_name;
+    }
+
+    public void setLast_name(String last_name) {
+        this.last_name = last_name;
     }
 }

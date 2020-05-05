@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>View contracts</title>
+    <link rel="stylesheet" type="text/css" href="../../myCSS.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+    <div class="topnav">
+        <a href="/">Home</a>
+        <a href="/cars/list">Cars</a>
+        <a class=active" href="/contracts/list">Contracts "</a>
+        <a href="/renters/list">Renters</a>
+    </div>
+
+    <table class="table">
+        <tr>
+            <th>ID</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Car Brand</th>
+            <th>Car Model</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Start KM</th>
+            <th>Max KM</th>
+            <th></th>
+        </tr>
+        <tr>
+            <td th:text = "${contract.id}" />
+            <td th:text = "${contract.first_name}" />
+            <td th:text = "${contract.last_name}" />
+            <td th:text = "${contract.car_brand}" />
+            <td th:text = "${contract.car_model}" />
+            <td th:text = "${contract.start_date}" />
+            <td th:text = "${contract.end_date}" />
+            <td th:text = "${contract.start_km}" />
+            <td th:text = "${contract.max_km}" />
+        </tr>
+</table>
+
+</body>
+</html>
