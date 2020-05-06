@@ -19,7 +19,7 @@ public class RenterRepo {
     JdbcTemplate template;
 
     public List<Renter> fetchAll(){
-        String sql = "SELECT * from renters JOIN addresses ON renters.address_id = addresses.id";
+        String sql = "SELECT *, addresses.id AS ad_id FROM renters JOIN addresses ON renters.address_id = addresses.id ORDER BY renters.id";
         RowMapper<Renter> rowMapper = new BeanPropertyRowMapper<>(Renter.class);
         return template.query(sql, rowMapper);
     }

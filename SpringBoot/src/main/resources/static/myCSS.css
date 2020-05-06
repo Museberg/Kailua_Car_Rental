@@ -1,8 +1,8 @@
 /* Add a black background color to the top navigation */
 .topnav {
-    background-color: #333;
+    background-color: #34495e;
     overflow: hidden;
-    padding: -5px -5px;
+    width: 100%;
 }
 
 /* Style the links inside the navigation bar */
@@ -17,13 +17,12 @@
 
 /* Change the color of links on hover */
 .topnav a:hover {
-    background-color: #ddd;
+    background-color: #95a5a6;
     color: black;
 }
-
 /* Add a color to the active/current link */
 .topnav a.active {
-    background-color: #4CAF50;
+    background-color: #2980b9;
     color: white;
 }
 
@@ -31,10 +30,44 @@ table.fancyTable td {
     padding: 10px;
 }
 
-/*Box for news feed on front page */
-div.box {
-    border: 5px red;
-    height: 50px;
-    width: 50px;
-    background-color: blue;
+.createButton {
+    padding: 10px 30px;
+    margin-bottom: 40px;
+    margin-left: 5px;
+    width: 150px;
+    height: 40px;
+}
+
+.backButton {
+    padding: 10px 30px;
+    margin-left: 5px;
+    margin-top: 5px;
+    width: 150px;
+    height: 40px;
+}
+
+.addButton {
+    margin-left: 5px;
+    margin-top: 5px;
+}
+
+.createButtonDiv {
+    padding: 10px;
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.tableButton {
+    width: 80px;
+}
+
+.truncate {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 70px;
 }

@@ -19,7 +19,7 @@ public class ContractRepo {
 
     public List<Contract> fetchAll(){
         String sql = "SELECT contracts.id, start_date, end_date, start_km, max_km, registration_number, models.model AS car_model, brand_name AS car_brand FROM contracts JOIN cars ON contracts.car_id = cars.id " +
-                "JOIN models ON cars.model = models.model JOIN brands ON models.brand_id = brands.id";
+                "JOIN models ON cars.model = models.model JOIN brands ON models.brand_id = brands.id ORDER BY contracts.id";
         RowMapper<Contract> rowMapper = new BeanPropertyRowMapper<>(Contract.class);
         return template.query(sql, rowMapper);
     }

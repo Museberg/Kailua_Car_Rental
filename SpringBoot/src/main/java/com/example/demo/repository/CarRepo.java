@@ -18,7 +18,7 @@ public class CarRepo {
     public List<Car> fetchAll(){
         String sql = "SELECT *, cars.id AS ID, brand_name AS brand FROM cars" +
                     " JOIN models ON cars.model = models.model" +
-                    " JOIN brands ON models.brand_id = brands.id";
+                    " JOIN brands ON models.brand_id = brands.id ORDER BY cars.id";
         RowMapper<Car> rowMapper = new BeanPropertyRowMapper<>(Car.class);
         return template.query(sql, rowMapper);
     }

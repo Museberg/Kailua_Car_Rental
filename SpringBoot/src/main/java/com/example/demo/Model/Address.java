@@ -1,6 +1,11 @@
 package com.example.demo.Model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Address {
+    @Id
     private int id;
     private String street_name;
     private String street_number;

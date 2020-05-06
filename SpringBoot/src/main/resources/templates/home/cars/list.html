@@ -19,18 +19,12 @@
         <p class="lead">This is the full list of all cars which Kailua Car Rental owns</p>
     </div>
 
-    <div style="padding: 10px">
+    <div class="createButtonDiv">
         <a th:href="@{/cars/create}">
-            <button class="btn btn-success float-right" style="padding: 30px">Create car</button>
+            <button class="btn btn-success float-left createButton">Create car</button>
         </a>
     </div>
-    <div class="container">
-        <h2>Search</h2>
-        <p>Type something in the input field to search the table for first names, last names or phone:</p>
-        <input class="form-control" id="myInput" type="text" placeholder="Search..">
-        <br>
-    </div>
-    <table id="myTable" class="table">
+    <table id="myTable" class="table table-striped">
         <thead class="thead-light">
             <tr>
                 <th>ID</th>
@@ -42,58 +36,49 @@
                 <th>Odometer</th>
                 <th>Car type</th>
                 <th>Gear type</th>
-                <th>Air conditioning</th>
+                <th>Air con.</th>
                 <th>CCM</th>
                 <th>HP</th>
                 <th>Seat type</th>
-                <th>Seat number</th>
-                <th>Cruise control</th>
+                <th>Seat num.</th>
+                <th>CC</th>
                 <th></th>
                 <th></th>
                 <th></th>
             </tr>
         </thead>
         <tr th:each = "car: ${cars}">
-            <td th:text = "${car.id}" />
-            <td th:text = "${car.brand}" />
-            <td th:text = "${car.model}" />
-            <td th:text = "${car.registration_number}" />
-            <td th:text = "${car.first_registration}" />
-            <td th:text = "${car.fuel_type}" />
-            <td th:text = "${car.odometer}" />
-            <td th:text = "${car.car_type}" />
-            <td th:text = "${car.gear_type}" />
-            <td th:text = "${car.air_conditioning}" />
-            <td th:text = "${car.ccm}" />
-            <td th:text = "${car.hp}" />
-            <td th:text = "${car.seat_type}" />
-            <td th:text = "${car.seat_number}" />
-            <td th:text = "${car.cruise_control}" />
+            <td class="truncate" th:text = "${car.id}" />
+            <td class="truncate" th:text = "${car.brand}" />
+            <td class="truncate" th:text = "${car.model}" />
+            <td class="truncate" th:text = "${car.registration_number}" />
+            <td class="truncate" th:text = "${car.first_registration}" />
+            <td class="truncate" th:text = "${car.fuel_type}" />
+            <td class="truncate" th:text = "${car.odometer}" />
+            <td class="truncate" th:text = "${car.car_type}" />
+            <td class="truncate" th:text = "${car.gear_type}" />
+            <td class="truncate" th:text = "${car.air_conditioning}" />
+            <td class="truncate" th:text = "${car.ccm}" />
+            <td class="truncate" th:text = "${car.hp}" />
+            <td class="truncate" th:text = "${car.seat_type}" />
+            <td class="truncate" th:text = "${car.seat_number}" />
+            <td class="truncate" th:text = "${car.cruise_control}" />
             <td>
                 <a th:href="@{'/cars/view-one/'+${car.id}}">
-                    <button>View car</button>
+                    <button class="btn btn-secondary tableButton">View</button>
                 </a>
             </td>
             <td>
                 <a th:href="@{'/cars/edit/'+${car.id}}">
-                    <button>Edit car</button>
+                    <button class="btn btn-secondary tableButton">Edit</button>
                 </a>
             </td>
             <td>
                 <a th:href="@{'/cars/delete/'+${car.id}}">
-                    <button>Delete car</button>
+                    <button class="btn btn-secondary tableButton">Delete</button>
                 </a>
             </td>
         </tr>
     </table>
-    <script>
-        $("#myInput").on("keyup", function() {
-            const value = $(this).val().toLowerCase();
-            console.log("value:", value)
-            $("#myTable tr").filter(function() {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
-        });
-    </script>
 </body>
 </html>

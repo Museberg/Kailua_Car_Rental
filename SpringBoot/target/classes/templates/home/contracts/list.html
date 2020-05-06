@@ -18,18 +18,12 @@
         <h1 class="display-4">Contract list</h1>
         <p class="lead">This is the full list of all contracts with Kailua Car Rental</p>
     </div>
-    <div style="padding: 10px">
+    <div class="createButtonDiv">
         <a th:href="@{/contracts/create}">
-            <button class="btn btn-success float-right" style="padding: 30px">Create contract</button>
+            <button class="btn btn-success float-left createButton">Create contract</button>
         </a>
     </div>
-    <div class="container">
-        <h2>Search</h2>
-        <p>Type something in the input field to search the table for start date, end date, car model or brand:</p>
-        <input class="form-control" id="myInput" type="text" placeholder="Search..">
-        <br>
-    </div>
-    <table id="myTable"class="table">
+    <table id="myTable" class="table table-striped">
         <thead class="thead-light">
             <tr>
                 <th>ID</th>
@@ -54,29 +48,20 @@
                 <td th:text = "${contract.max_km}" />
                 <td>
                     <a th:href="@{'/contracts/view-one/'+${contract.id}}">
-                        <button>View contract</button>
+                        <button class="btn btn-secondary tableButton">View</button>
                     </a>
                 </td>
                 <td>
                     <a th:href="@{'/contracts/edit/'+${contract.id}}">
-                        <button>Edit contract</button>
+                        <button class="btn btn-secondary tableButton">Edit</button>
                     </a>
                 </td>
                 <td>
                     <a th:href="@{'/contracts/delete/'+${contract.id}}">
-                        <button>Delete contract</button>
+                        <button class="btn btn-secondary tableButton">Delete</button>
                     </a>
                 </td>
             </tr>
     </table>
-    <script>
-        $("#myInput").on("keyup", function() {
-            const value = $(this).val().toLowerCase();
-            console.log("value:", value)
-            $("#myTable tr").filter(function() {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
-        });
-    </script>
 </body>
 </html>

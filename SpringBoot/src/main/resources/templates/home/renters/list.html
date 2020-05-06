@@ -18,18 +18,12 @@
         <h1 class="display-4">Renter list</h1>
         <p class="lead">This is the full list of all renters who is/has been a customer of Kailua Car Rental</p>
     </div>
-    <div style="padding: 10px">
+    <div class="createButtonDiv">
         <a th:href="@{/renters/create}">
-            <button class="btn btn-success float-right" style="padding: 30px">Create renter</button>
+            <button class="btn btn-success float-left createButton" >Create renter</button>
         </a>
     </div>
-    <div class="container">
-        <h2>Search</h2>
-        <p>Type something in the input field to search the table for first names, last names or reg. number:</p>
-        <input class="form-control" id="myInput" type="text" placeholder="Search..">
-        <br>
-    </div>
-    <table id="myTable" class="table">
+    <table id="myTable" class="table table-striped">
         <thead class="thead-light">
         <tr>
             <th>Renter ID</th>
@@ -52,24 +46,20 @@
             <td th:text = "${renter.driver_since}" />
             <td>
                 <a th:href="@{'/renters'}">
-                    <button>View renter</button>
+                    <button class="btn btn-secondary tableButton">View</button>
                 </a>
             </td>
             <td>
                 <a th:href="@{'/renters'}">
-                    <button>Edit renter</button>
+                    <button class="btn btn-secondary tableButton">Edit</button>
+                </a>
+            </td>
+            <td>
+                <a>
+                    <button class="btn btn-secondary tableButton">Delete</button>
                 </a>
             </td>
         </tr>
     </table>
-    <script>
-        $("#myInput").on("keyup", function() {
-            const value = $(this).val().toLowerCase();
-            console.log("value:", value)
-            $("#myTable tr").filter(function() {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
-        });
-    </script>
 </body>
 </html>
