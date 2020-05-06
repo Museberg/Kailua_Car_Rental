@@ -5,6 +5,7 @@
     <title>List of contracts</title>
     <link rel="stylesheet" type="text/css" href="/../../myCSS.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
     <div class="topnav">
@@ -19,11 +20,17 @@
     </div>
     <div style="padding: 10px">
         <a th:href="@{/contracts/create}">
-            <button style="padding: 10px">Create contract</button>
+            <button class="btn btn-success float-right" style="padding: 30px">Create contract</button>
         </a>
     </div>
-    <table class="table">
-        <thead>
+    <div class="container">
+        <h2>Search</h2>
+        <p>Type something in the input field to search the table for start date, end date, car model or brand:</p>
+        <input class="form-control" id="myInput" type="text" placeholder="Search..">
+        <br>
+    </div>
+    <table id="myTable"class="table">
+        <thead class="thead-light">
             <tr>
                 <th>ID</th>
                 <th>Car brand</th>
@@ -32,6 +39,8 @@
                 <th>End date</th>
                 <th>Start KM</th>
                 <th>Max KM</th>
+                <th></th>
+                <th></th>
                 <th></th>
             </tr>
         </thead>
@@ -60,5 +69,14 @@
                 </td>
             </tr>
     </table>
+    <script>
+        $("#myInput").on("keyup", function() {
+            const value = $(this).val().toLowerCase();
+            console.log("value:", value)
+            $("#myTable tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    </script>
 </body>
 </html>

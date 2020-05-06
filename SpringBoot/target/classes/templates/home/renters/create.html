@@ -13,6 +13,10 @@
         <a href="/contracts/list">Contracts</a>
         <a class="active" href="/renters/list">Renters</a>
     </div>
+    <div class="jumbotron">
+        <h1 class="display-4">Create a renter</h1>
+        <p class="lead"></p>
+    </div>
     <form action="/renters/create" method="post">
         <table>
             <tr>
@@ -64,9 +68,7 @@
                 <td><input type="text" name="country"></td>
             </tr>
         </table>
-        <input type="submit" value="Add renter">
+        <input type="submit" button class="btn btn-success" style="padding: 10px" value="Add renter">
     </form>
-
-
 </body>
 </html>

@@ -30,3 +30,11 @@
 table.fancyTable td {
     padding: 10px;
 }
+
+/*Box for news feed on front page */
+div.box {
+    border: 5px red;
+    height: 50px;
+    width: 50px;
+    background-color: blue;
+}
