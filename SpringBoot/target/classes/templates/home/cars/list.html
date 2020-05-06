@@ -21,7 +21,7 @@
 
     <div style="padding: 10px">
         <a th:href="@{/cars/create}">
-            <button class="btn btn-success float-right" style="padding: 30px">Create car</button>
+            <button class="btn btn-success float-right" style="padding: 30px; background-color: dodgerblue">Create car</button>
         </a>
     </div>
     <div class="container">
@@ -37,60 +37,43 @@
                 <th>Brand</th>
                 <th>Model</th>
                 <th>Reg. number</th>
-                <th>First reg.</th>
-                <th>Fuel type</th>
-                <th>Odometer</th>
                 <th>Car type</th>
-                <th>Gear type</th>
-                <th>Air conditioning</th>
-                <th>CCM</th>
-                <th>HP</th>
-                <th>Seat type</th>
-                <th>Seat number</th>
-                <th>Cruise control</th>
                 <th></th>
                 <th></th>
                 <th></th>
             </tr>
         </thead>
-        <tr th:each = "car: ${cars}">
-            <td th:text = "${car.id}" />
-            <td th:text = "${car.brand}" />
-            <td th:text = "${car.model}" />
-            <td th:text = "${car.registration_number}" />
-            <td th:text = "${car.first_registration}" />
-            <td th:text = "${car.fuel_type}" />
-            <td th:text = "${car.odometer}" />
-            <td th:text = "${car.car_type}" />
-            <td th:text = "${car.gear_type}" />
-            <td th:text = "${car.air_conditioning}" />
-            <td th:text = "${car.ccm}" />
-            <td th:text = "${car.hp}" />
-            <td th:text = "${car.seat_type}" />
-            <td th:text = "${car.seat_number}" />
-            <td th:text = "${car.cruise_control}" />
-            <td>
-                <a th:href="@{'/cars/view-one/'+${car.id}}">
-                    <button>View car</button>
-                </a>
-            </td>
-            <td>
-                <a th:href="@{'/cars/edit/'+${car.id}}">
-                    <button>Edit car</button>
-                </a>
-            </td>
-            <td>
-                <a th:href="@{'/cars/delete/'+${car.id}}">
-                    <button>Delete car</button>
-                </a>
-            </td>
-        </tr>
+        <tbody>
+            <tr th:each = "car: ${cars}">
+                <td th:text = "${car.id}" />
+                <td th:text = "${car.brand}" />
+                <td th:text = "${car.model}" />
+                <td th:text = "${car.registration_number}" />
+                <td th:text = "${car.car_type}" />
+                <td>
+                    <a th:href="@{'/cars/view-one/'+${car.id}}">
+                        <button>View car</button>
+                    </a>
+                </td>
+                <td>
+                    <a th:href="@{'/cars/edit/'+${car.id}}">
+                        <button>Edit car</button>
+                    </a>
+                </td>
+                <td>
+                    <a th:href="@{'/cars/delete/'+${car.id}}">
+                        <button>Delete car</button>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+
     </table>
     <script>
         $("#myInput").on("keyup", function() {
             const value = $(this).val().toLowerCase();
             console.log("value:", value)
-            $("#myTable tr").filter(function() {
+            $("#myTable tbody tr").filter(function() {
                 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
             });
         });

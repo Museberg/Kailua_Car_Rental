@@ -20,7 +20,7 @@
     </div>
     <div style="padding: 10px">
         <a th:href="@{/contracts/create}">
-            <button class="btn btn-success float-right" style="padding: 30px">Create contract</button>
+            <button class="btn btn-success float-right" style="padding: 30px; background-color: dodgerblue">Create contract</button>
         </a>
     </div>
     <div class="container">
@@ -44,6 +44,7 @@
                 <th></th>
             </tr>
         </thead>
+        <tbody>
             <tr th:each = "contract: ${contracts}">
                 <td th:text = "${contract.id}" />
                 <td th:text = "${contract.car_brand}" />
@@ -68,12 +69,13 @@
                     </a>
                 </td>
             </tr>
+        </tbody>
     </table>
     <script>
         $("#myInput").on("keyup", function() {
             const value = $(this).val().toLowerCase();
             console.log("value:", value)
-            $("#myTable tr").filter(function() {
+            $("#myTable tbody tr").filter(function() {
                 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
             });
         });

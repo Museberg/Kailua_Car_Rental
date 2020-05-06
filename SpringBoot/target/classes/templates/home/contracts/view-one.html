@@ -17,31 +17,45 @@
         <h1 class="display-4">View specific contract</h1>
         <p class="lead"></p>
     </div>
-    <table class="table">
-        <tr>
-            <th>ID</th>
-            <th>First name</th>
-            <th>Last name</th>
-            <th>Car Brand</th>
-            <th>Car Model</th>
-            <th>Start Date</th>
-            <th>End Date</th>
-            <th>Start KM</th>
-            <th>Max KM</th>
-            <th></th>
-        </tr>
-        <tr>
-            <td th:text = "${contract.id}" />
-            <td th:text = "${contract.first_name}" />
-            <td th:text = "${contract.last_name}" />
-            <td th:text = "${contract.car_brand}" />
-            <td th:text = "${contract.car_model}" />
-            <td th:text = "${contract.start_date}" />
-            <td th:text = "${contract.end_date}" />
-            <td th:text = "${contract.start_km}" />
-            <td th:text = "${contract.max_km}" />
-        </tr>
-</table>
-
+    <table class="table" style="width:15%">
+        <thead class="thead-light">
+            <tr>
+                <th>ID</th>
+                <td th:text = "${contract.id}" />
+            </tr>
+            <tr>
+                <th>First name</th>
+                <td th:text = "${contract.first_name}" />
+            </tr>
+            <tr>
+                <th>Last name</th>
+                <td th:text = "${contract.last_name}" />
+            </tr>
+            <tr>
+                <th>Car Brand</th>
+                <td th:text = "${contract.car_brand}" />
+            </tr>
+            <tr>
+                <th>Car Model</th>
+                <td th:text = "${contract.car_model}" />
+            </tr>
+            <tr>
+                <th>Start Date</th>
+                <td th:text = "${contract.start_date}" />
+            </tr>
+            <tr>
+                <th>End Date</th>
+                <td th:text = "${contract.end_date}" />
+            </tr>
+            <tr>
+                <th>Start KM</th>
+                <td th:text = "${contract.start_km}" />
+            </tr>
+            <tr>
+                <th>Max KM</th>
+                <td th:text = "${contract.max_km}" />
+            </tr>
+        </thead>
+    </table>
 </body>
 </html>

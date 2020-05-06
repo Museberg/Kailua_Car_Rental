@@ -17,42 +17,69 @@
         <h1 class="display-4">View specific car</h1>
         <p class="lead"></p>
     </div>
-    <table class="table">
-        <tr>
-            <th>ID</th>
-            <th>Brand</th>
-            <th>Model</th>
-            <th>Reg. number</th>
-            <th>First reg.</th>
-            <th>Fuel type</th>
-            <th>Odometer</th>
-            <th>Car type</th>
-            <th>Gear type</th>
-            <th>Air conditioning</th>
-            <th>CCM</th>
-            <th>HP</th>
-            <th>Seat type</th>
-            <th>Seat number</th>
-            <th>Cruise control</th>
-            <th></th>
-        </tr>
-        <tr>
-            <td th:text = "${car.id}" />
-            <td th:text = "${car.brand}" />
-            <td th:text = "${car.model}" />
-            <td th:text = "${car.registration_number}" />
-            <td th:text = "${car.first_registration}" />
-            <td th:text = "${car.fuel_type}" />
-            <td th:text = "${car.odometer}" />
-            <td th:text = "${car.car_type}" />
-            <td th:text = "${car.gear_type}" />
-            <td th:text = "${car.air_conditioning}" />
-            <td th:text = "${car.ccm}" />
-            <td th:text = "${car.hp}" />
-            <td th:text = "${car.seat_type}" />
-            <td th:text = "${car.seat_number}" />
-            <td th:text = "${car.cruise_control}" />
-        </tr>
+    <table class="table" style="width:15%">
+        <thead class="thead-light">
+            <tr>
+                <th>ID:</th>
+                <td th:text = "${car.id}" />
+            </tr>
+            <tr>
+                <th>Brand:</th>
+                <td th:text = "${car.brand}" />
+            </tr>
+            <tr>
+                <th>Model:</th>
+                <td th:text = "${car.model}" />
+            </tr>
+            <tr>
+                <th>Reg. number:</th>
+                <td th:text = "${car.registration_number}" />
+            </tr>
+            <tr>
+                <th>First reg:</th>
+                <td th:text = "${car.first_registration}" />
+            </tr>
+            <tr>
+                <th>Fuel type:</th>
+                <td th:text = "${car.fuel_type}" />
+            </tr>
+            <tr>
+                <th>Odometer:</th>
+                <td th:text = "${car.odometer}" />
+            </tr>
+            <tr>
+                <th>Car type:</th>
+                <td th:text = "${car.car_type}" />
+            </tr>
+            <tr>
+                <th>Gear type:</th>
+                <td th:text = "${car.gear_type}" />
+            </tr>
+            <tr>
+                <th>Air conditioning:</th>
+                <td th:text = "${car.air_conditioning}" />
+            </tr>
+            <tr>
+                <th>CCM:</th>
+                <td th:text = "${car.ccm}" />
+            </tr>
+            <tr>
+                <th>HP:</th>
+                <td th:text = "${car.hp}" />
+            </tr>
+            <tr>
+                <th>Seat type:</th>
+                <td th:text = "${car.seat_type}" />
+            </tr>
+            <tr>
+                <th>Seat number:</th>
+                <td th:text = "${car.seat_number}" />
+            </tr>
+            <tr>
+                <th>Cruise control:</th>
+                <td th:text = "${car.cruise_control}" />
+            </tr>
+        </thead>
     </table>
 </body>
 </html>

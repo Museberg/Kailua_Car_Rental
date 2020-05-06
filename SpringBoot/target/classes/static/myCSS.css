@@ -1,6 +1,6 @@
 /* Add a black background color to the top navigation */
 .topnav {
-    background-color: #333;
+    background-color: dimgray;
     overflow: hidden;
     padding: -5px -5px;
 }
@@ -23,7 +23,7 @@
 
 /* Add a color to the active/current link */
 .topnav a.active {
-    background-color: #4CAF50;
+    background-color: dodgerblue;
     color: white;
 }
 
@@ -33,8 +33,63 @@ table.fancyTable td {
 
 /*Box for news feed on front page */
 div.box {
-    border: 5px red;
-    height: 50px;
-    width: 50px;
-    background-color: blue;
+    height: 500px;
+    width: 350px;
+    border: 1px solid darkgray;
+    background: whitesmoke;
+    display: inline-block;
+    float: right;
+    margin-right: 75px;
 }
+.textbox {
+    width: 330px;
+    position: relative;
+    left: 8px;
+    top: 10px;
+    border: 1px solid lightgray;
+    background-color: ghostwhite;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+.seemore {
+    position: relative;
+    left: 125px;
+    top: 22px;
+    background-color: darkgray;
+    color: #333333;
+    border-color: lightgray;
+    border-radius: 10px;
+    height: 30px;
+    width: 120px;
+    font-weight: 700;
+}
+
+.description {
+    position: relative;
+    left: 20px;
+    top: 25px;
+    width: 980px;
+}
+
+.newcarbox {
+    display: inline-block;
+    width: 390px;
+    height: 300px;
+    align-items: center;
+    margin-left: 30px;
+}
+
+.newcartitle {
+    margin-left: 50px;
+    font-size: 30px;
+    text-align: center;
+    vertical-align: middle;
+    font-family: "DejaVu Sans";
+    color: red;
+}
+
+.newcar {
+    width: 500px;
+    height: 165px;
+}
+

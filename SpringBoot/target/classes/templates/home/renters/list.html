@@ -20,7 +20,7 @@
     </div>
     <div style="padding: 10px">
         <a th:href="@{/renters/create}">
-            <button class="btn btn-success float-right" style="padding: 30px">Create renter</button>
+            <button class="btn btn-success float-right" style="padding: 30px; background-color: dodgerblue">Create renter</button>
         </a>
     </div>
     <div class="container">
@@ -31,42 +31,44 @@
     </div>
     <table id="myTable" class="table">
         <thead class="thead-light">
-        <tr>
-            <th>Renter ID</th>
-            <th>First name</th>
-            <th>Last name</th>
-            <th>Phone</th>
-            <th>Email</th>
-            <th>Driver since</th>
-            <th></th>
-            <th></th>
-            <th></th>
-        </tr>
+            <tr>
+                <th>Renter ID</th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Driver since</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
         </thead>
-        <tr th:each = "renter: ${renters}">
-            <td th:text = "${renter.id}" />
-            <td th:text = "${renter.first_name}" />
-            <td th:text = "${renter.last_name}" />
-            <td th:text = "${renter.telephone}" />
-            <td th:text = "${renter.email}" />
-            <td th:text = "${renter.driver_since}" />
-            <td>
-                <a th:href="@{'/renters'}">
-                    <button>View renter</button>
-                </a>
-            </td>
-            <td>
-                <a th:href="@{'/renters'}">
-                    <button>Edit renter</button>
-                </a>
-            </td>
-        </tr>
+        <tbody>
+            <tr th:each = "renter: ${renters}">
+                <td th:text = "${renter.id}" />
+                <td th:text = "${renter.first_name}" />
+                <td th:text = "${renter.last_name}" />
+                <td th:text = "${renter.telephone}" />
+                <td th:text = "${renter.email}" />
+                <td th:text = "${renter.driver_since}" />
+                <td>
+                    <a th:href="@{'/renters'}">
+                        <button>View renter</button>
+                    </a>
+                </td>
+                <td>
+                    <a th:href="@{'/renters'}">
+                        <button>Edit renter</button>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
     </table>
     <script>
         $("#myInput").on("keyup", function() {
             const value = $(this).val().toLowerCase();
             console.log("value:", value)
-            $("#myTable tr").filter(function() {
+            $("#myTable tbody tr").filter(function() {
                 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
             });
         });
